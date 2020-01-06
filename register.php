@@ -1,5 +1,10 @@
 <?php
   require 'inc/bdd.php';
+  session_start();
+
+  if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    redirect("home");
+  }
 
   if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['birthday']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
     $error = register(
