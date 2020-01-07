@@ -1,0 +1,124 @@
+#code {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: -60;
+}
+
+body{
+  font-family: 'Oswald', sans-serif;
+}
+
+.formulaireConnexion{
+  width: 30%;
+margin: auto;
+margin-top: 100px;
+background-color: rgb(42, 42, 42);
+border-radius: 20px;
+text-align: center;
+}
+
+.formulaireConnexion img{
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+.formpart1{
+  background-color: rgb(8, 8, 8);
+  border-radius: 20px 20px 0 0;
+}
+
+input{
+  margin-bottom: 20px;
+  width: 50%;
+  height: 25px;
+  margin-top: 10px;
+  background-color:rgb(42, 42, 42);
+  border-bottom: 2px solid rgb(201, 201, 201);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  color: white;
+}
+
+label{
+  color: rgb(201, 201, 201);
+}
+
+button{
+  background-color:rgb(42, 42, 42);
+  border: 2px solid rgb(201, 201, 201);
+  color: white;
+  padding: 15px;
+  width: 30%;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: 'Oswald', sans-serif;
+}
+
+button:hover{
+  background-color: black;
+  transition: 2s;
+}
+
+h1{
+  color: white;
+  text-align: center;
+  font-style: italic;
+}
+
+#inscription{
+  text-align: center;
+  color: white;
+  font-weight: lighter;
+  padding-bottom: 20px;
+}
+
+#inscription a{
+  color: white;
+  font-weight: bold;
+}
+
+*::selection {
+background:black;
+color:grey;
+}
+
+*::-moz-selection {
+background:black;
+color:grey;
+}
+
+*::-webkit-selection {
+background:black;
+color:grey;
+}
+
+.error{
+  color: rgb(159, 11, 11);
+  text-transform: uppercase;
+}
+
+#red{
+width: 50%;
+margin: auto;
+margin-top: 100px;
+background-color: rgb(42, 42, 42);
+border-radius: 20px;
+text-align: center;
+}
+
+#formulaireflex{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.part1, .part2{
+  width: 50%;
+}
