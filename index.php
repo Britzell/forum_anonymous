@@ -1,5 +1,10 @@
 <?php
   require 'inc/bdd.php';
+  session_start();
+  
+  if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    redirect("home");
+  }
 
   if (!empty($_POST['login']) && !empty($_POST['password'])) {
     if (login($pdo, $_POST['login'], $_POST['password'])) {
