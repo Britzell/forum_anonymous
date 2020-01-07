@@ -32,4 +32,7 @@
     <label for="name">Date d'anniversaire :</label>
     <input type="date" name="birthday" value="<?= $user['birthday'] ?>" required>
   </div>
+  <button type="submit" name="button">Valider</button>
 </form>
+
+<a href="changePassword">Changer mot de passe</a>

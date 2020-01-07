@@ -7,11 +7,21 @@
  * redirect($url) Redirection
  * restrict($nb = 1)  Restriction de la page, défaut tous ceux qui sont connectés, 1 -> User/Modo/Admin, 2 -> Modo/Admin, 3 -> Admin
  * createCategory($pdo, $name, $description, $subCategory = NULL) Créer une categorie
+ * createComment($pdo, $content, $idTopic, $idUser) Créer un commentaire
  * createTopic($pdo, $name, $category, $comment) Créer un topic
  * getCategory($pdo) Récupérer toutes les catégories
+ * ----10----
+ * getComment($pdo, $idTopic) Récupérer les commantaires du topic
  * getTopic($pdo) Récupérer tous les topics
- * getUser($pdo, $id_user) Récupérer donnée utilisateur
- * setUser($pdo, $idUser) Update donnée utilisateur
+ * getUser($pdo, $id_user) Récupérer données utilisateur
+ * setUser($pdo, $idUser) Update données utilisateur
+ * editComment($pdo, $idTopic, $idComment, $edit) Editer un commentaire
+ * changePassword($pdo, $idUser, $password, $password_confirm) Changer mot de passe
+ * countComment($pdo, $idTopic) Nombre de commaintaire dans ce topic
+ * getRole($pdo, $n) Obtenir le role de l'uilisateur (alphanumérique)
+ * getLastUserTopic($pdo, $idUser, $n) Récupérer les n dernier topic ou l'utilisateur à écrit un commentaire
+ *
+ * ----20----
  */
 
   function query($pdo, $sql, $param = [])
@@ -131,6 +141,22 @@
     }
   }
 
+  function createComment($pdo, $content, $idTopic, $idUser)
+  {
+    $req = query($pdo, "INSERT INTO comment (content, enable, id_topic, id_user) VALUES (?, ?, ?, ?)", [
+      $content,
+      1,
+      $idTopic,
+      $idUser
+    ]);
+
+    if ($req) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   function createTopic($pdo, $name, $category, $comment)
   {
     $name = htmlspecialchars($name);
@@ -148,14 +174,13 @@
     ]);
     $idTopic = $pdo->lastInsertId();
 
-    $req = query($pdo, "INSERT INTO comment (content, enable, id_topic, id_user) VALUES (?, ?, ?, ?)", [
-      $comment,
-      1,
-      $idTopic,
-      $_SESSION['user']['id_user']
-    ]);
+    $req = createComment($pdo, $comment, $idTopic, $_SESSION['user']['id_user']);
 
-    return true;
+    if ($req) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function getCategory($pdo)
@@ -170,11 +195,26 @@
     return $category;
   }
 
-  function getTopic($pdo)
-  {
-    $topic = query($pdo, "SELECT * FROM topic")->fetchAll();
+  // ----10----
 
-    if (empty($category)) {
+  function getComment($pdo, $idTopic, $idComment = false)
+  {
+    if ($idComment != false) {
+      $comment = query($pdo, "SELECT comment.*, user.login FROM comment, user WHERE comment.id_comment = ? AND comment.id_user = user.id_user LIMIT 1", [$idComment])->fetch();
+    } else {
+      $comment = query($pdo, "SELECT comment.*, user.login FROM comment, user WHERE comment.id_topic = ? AND comment.id_user = user.id_user", [$idTopic])->fetchAll();
+    }
+    if (empty($comment)) {
+      return false;
+    }
+    return $comment;
+  }
+
+  function getTopic($pdo, $idCategory)
+  {
+    $topic = query($pdo, "SELECT * FROM topic WHERE id_category = ?", [$idCategory])->fetchAll();
+
+    if (empty($topic)) {
       $topic[0]['id_topic'] = "z";
       $topic[0]['name'] = "Aucun topic enregistré";
     }
@@ -199,6 +239,66 @@
       htmlspecialchars($birthday)
     ]);
     return $user;
+  }
+
+  function editComment($pdo, $idTopic, $idComment, $edit)
+  {
+    $edit = htmlspecialchars($edit);
+
+    $req = query($pdo, "UPDATE comment SET edit = ?, updateAt = NOW() WHERE id_comment = ? AND id_topic = ?", [
+      $edit,
+      $idComment,
+      $idTopic
+    ]);
+
+    if ($req) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function deleteComment($pdo, $idTopic, $idComment)
+  {
+    $req = query($pdo, "UPDATE comment SET enable = 0 WHERE id_comment = ? AND id_topic = ?", [$idComment, $idTopic]);
+
+    if ($req) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function changePassword($pdo, $idUser, $password, $password_confirm)
+  {
+    $password = htmlspecialchars($password);
+    $password_confirm = htmlspecialchars($password_confirm);
+    if ($password == $password_confirm) {
+      $options = ['cost' => '12'];
+      $pass = password_hash($password, PASSWORD_BCRYPT, $options);
+      $req = query($pdo, "UPDATE user SET password = ? WHERE id_user = ?", [$pass, $idUser]);
+      return true;
+    } else {
+      return "Les mots de passe ne correspondent pas.";
+    }
+  }
+
+  function countComment($pdo, $idTopic)
+  {
+    $count = query($pdo, "SELECT count(id_comment) FROM comment WHERE id_topic = ? AND enable = 1", [$idTopic])->fetch();
+    return $count['count(id_comment)'];
+  }
+
+  function getRole($pdo, $n)
+  {
+    $role = query($pdo, "SELECT name FROM role WHERE id_role = ?", [$n])->fetch();
+    return $role['name'];
+  }
+
+  function getLastUserTopic($pdo, $idUser, $n)
+  {
+    $last = query($pdo, "SELECT DISTINCT comment.id_topic, comment.content, topic.name FROM comment, topic WHERE comment.id_user = ? AND comment.id_topic = topic.id_topic ORDER BY comment.id_comment DESC LIMIT $n", [$idUser])->fetchAll();
+    return $last;
   }
 
 ?>

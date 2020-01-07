@@ -4,7 +4,7 @@
 
   if (!empty($_POST['name']) && !empty($_POST['description'])) {
     $category = createCategory($pdo, $_POST['name'], $_POST['description']);
-    if ($topic != true) {
+    if ($category != true) {
       echo $category;
     }
   }
