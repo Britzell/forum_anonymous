@@ -25,21 +25,27 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $("#search").on('input', function postinput(){
-        var value = $(this).val();
-        $.ajax({
-            url: 'json/search.php',
-            data: { search: value },
-            type: 'post'
-        }).done(function(data) {
-            console.log('Done: ', data);
-            $('#searchData').empty();
-            $('#searchData').show("slow");
-            $.each(data,function(key, value) {
-              $("#searchData").append('<li>'+value.name+'</li>');
-            });
-        }).fail(function() {
-            console.log('Failed');
+      var value = $(this).val();
+      $.ajax({
+        url: 'json/search.php',
+        data: { search: value },
+        type: 'post'
+      }).done(function(data) {
+        // console.log('Done: ', data);
+        $('#searchData').empty();
+        $('#searchData').show("slow");
+        $.each(JSON.parse(data),function(key, value) {
+          if (value.name == "NULL") {
+            $("#searchData").append('<li>Aucun Topic trouvé</li>');
+          } else {
+            $("#searchData").append('<li>'+value.name+'</li>');
+          }
         });
+      }).fail(function() {
+        $('#searchData').empty();
+        $('#searchData').show("slow");
+        $("#searchData").append('<li>Aucun Topic trouvé</li>');
+      });
     });
   });
 </script>
