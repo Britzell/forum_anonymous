@@ -25,6 +25,7 @@ text-align: center;
   display: block;
   text-align: center;
   margin: auto;
+  width: 100%;
 }
 
 .formpart1{
@@ -66,7 +67,7 @@ button:hover{
   transition: 2s;
 }
 
-h1{
+h2{
   color: white;
   text-align: center;
   font-style: italic;
@@ -121,4 +122,70 @@ text-align: center;
 
 .part1, .part2{
   width: 50%;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+    background-color: black;
+}
+
+.logo{
+  width: 40%;
+}
+
+.naviga{
+  width: 60%;
+}
+
+.naviga ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding-top: 70px;
+  padding-right: 20px;
+}
+
+.naviga ul li a{
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  font-style: italic;
+}
+
+.naviga ul li a:hover{
+  border-bottom: 2px solid  rgb(215, 176, 117);
+}
+
+.bodyback{
+  background-image: url('../img/anonymous_mask.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+h3{
+  color: white;
+  font-size: 70px;
+  font-family: 'Rajdhani', sans-serif;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  border: 3px solid white;
+}
+
+h1{
+  color: rgb(215, 176, 117);
+  padding-left: 80px;
+    font-size: 46px;
+}
+
+main{
+  padding-top: 230px;
+}
+
+.logo img{
+  width: 35%;
+  padding-top: 20px;
 }

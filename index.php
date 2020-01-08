@@ -1,7 +1,7 @@
 <?php
   require 'inc/bdd.php';
   session_start();
-  
+
   if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
     redirect("home");
   }
@@ -29,7 +29,7 @@
   </div>
 
   <div class="formpart2">
-    <h1>Bienvenue chez les Anonymous...</h1>
+    <h2>Bienvenue chez les Anonymous...</h2>
     <form action="" method="post">
       <div class="form-group">
         <label for="login">Email ou Login :</label> <br>

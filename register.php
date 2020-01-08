@@ -40,7 +40,7 @@
   </div>
 
   <div class="formpart2">
-    <h1>Nous rejoindre...</h1>
+    <h2>Nous rejoindre...</h2>
     <form action="" method="POST">
       <div id="formulaireflex">
       <div class="part1">
