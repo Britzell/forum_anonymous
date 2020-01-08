@@ -3,7 +3,7 @@
   $idCategory = htmlspecialchars($_GET['id']);
 
   $topic = getTopic($pdo, $idCategory);
-
+  require 'inc/pagination.php';
 ?>
 
 <?php foreach ($topic as $k => $t): ?>

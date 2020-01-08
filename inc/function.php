@@ -1,6 +1,6 @@
 <?php
 /*
- * query($sql, $param) Requete SQL
+ * query($pdo, $sql, $param) Requete SQL
  * d($var) Debug variable
  * register($pdo, $firstname, $lastname, $login, $birthday, $password)
  * login($pdo, $login, $password)
@@ -20,7 +20,7 @@
  * countComment($pdo, $idTopic) Nombre de commaintaire dans ce topic
  * getRole($pdo, $n) Obtenir le role de l'uilisateur (alphanumérique)
  * getLastUserTopic($pdo, $idUser, $n) Récupérer les n dernier topic ou l'utilisateur à écrit un commentaire
- *
+ * topicIsset($pdo, $idTopic) Le topic exist ?
  * ----20----
  */
 
@@ -299,6 +299,12 @@
   {
     $last = query($pdo, "SELECT DISTINCT comment.id_topic, comment.content, topic.name FROM comment, topic WHERE comment.id_user = ? AND comment.id_topic = topic.id_topic ORDER BY comment.id_comment DESC LIMIT $n", [$idUser])->fetchAll();
     return $last;
+  }
+
+  function topicIsset($pdo, $idTopic)
+  {
+    $req = query($pdo, "SELECT EXISTS (SELECT id_topic FROM topic WHERE id_topic = ?) AS exist;", [$idTopic])->fetch();
+    return $req['exist'];
   }
 
 ?>
