@@ -18,10 +18,13 @@
  * editComment($pdo, $idTopic, $idComment, $edit) Editer un commentaire
  * changePassword($pdo, $idUser, $password, $password_confirm) Changer mot de passe
  * countComment($pdo, $idTopic) Nombre de commaintaire dans ce topic
+ * countTopic($pdo, $idCategory = false)
  * getRole($pdo, $n) Obtenir le role de l'uilisateur (alphanumérique)
  * getLastUserTopic($pdo, $idUser, $n) Récupérer les n dernier topic ou l'utilisateur à écrit un commentaire
- * topicIsset($pdo, $idTopic) Le topic exist ?
  * ----20----
+ * topicIsset($pdo, $idTopic) Le topic exist ?
+ * getIp() Récupérer l'ip de l'utilisateur
+ * addView($pdo, $idTopic) Ajouté un vue sur un topic, interval 20 minutes
  */
 
   function query($pdo, $sql, $param = [])
@@ -210,15 +213,25 @@
     return $comment;
   }
 
-  function getTopic($pdo, $idCategory)
+  function getTopic($pdo, $idCategory = false, $limit = 0)
   {
-    $topic = query($pdo, "SELECT * FROM topic WHERE id_category = ?", [$idCategory])->fetchAll();
+    if ($idCategory == false) {
+      $topic = query($pdo, "SELECT topic.*, user.login FROM topic, user WHERE topic.id_user = user.id_user LIMIT $limit, 30", [$idCategory])->fetchAll();
+    } else {
+      $topic = query($pdo, "SELECT topic.*, user.login FROM topic, user WHERE id_category = ? AND topic.id_user = user.id_user LIMIT $limit, 30", [$idCategory])->fetchAll();
+    }
 
     if (empty($topic)) {
       $topic[0]['id_topic'] = "z";
       $topic[0]['name'] = "Aucun topic enregistré";
+    } else {
+      foreach ($topic as $k => $t) {
+        $d = query($pdo, "SELECT comment.createAt FROM comment WHERE comment.id_topic = ? ORDER BY id_comment DESC LIMIT 1", [$t['id_topic']])->fetch();
+        $topic[$k]['activity'] = $d['createAt'];
+        $v = query($pdo, "SELECT COUNT(id_view) AS v FROM view WHERE id_topic = ?", [$t['id_topic']])->fetch();
+        $topic[$k]['view'] = $v['v'];
+      }
     }
-
     return $topic;
   }
 
@@ -289,6 +302,16 @@
     return $count['count(id_comment)'];
   }
 
+  function countTopic($pdo, $idCategory = false)
+  {
+    if ($idCategory == false) {
+      $count = query($pdo, "SELECT count(id_topic) FROM topic WHERE enable = 1", [$idCategory])->fetch();
+    } else {
+      $count = query($pdo, "SELECT count(id_topic) FROM topic WHERE id_category = ? AND enable = 1", [$idCategory])->fetch();
+    }
+    return $count['count(id_topic)'];
+  }
+
   function getRole($pdo, $n)
   {
     $role = query($pdo, "SELECT name FROM role WHERE id_role = ?", [$n])->fetch();
@@ -301,10 +324,29 @@
     return $last;
   }
 
+  // ----20----
+
   function topicIsset($pdo, $idTopic)
   {
     $req = query($pdo, "SELECT EXISTS (SELECT id_topic FROM topic WHERE id_topic = ?) AS exist;", [$idTopic])->fetch();
     return $req['exist'];
+  }
+
+  function getIp() {
+    if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+      return $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+      return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+      return (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+    }
+  }
+
+  function addView($pdo, $idTopic)
+  {
+    $ip = getIp();
+    $count = query($pdo, "SELECT COUNT(id_view) AS c FROM view WHERE ip = ? AND id_topic = ? AND date BETWEEN DATE_SUB(NOW() , INTERVAL 20 MINUTE) AND NOW()", [$ip, $idTopic])->fetch();
+    $count['c'] == 0 ? query($pdo, "INSERT INTO view(ip, id_topic) VALUES (?, ?)", [$ip, $idTopic]) : "";
   }
 
 ?>

@@ -1,9 +1,9 @@
 <?php
   require 'inc/bdd.php';
   restrict();
-  $idTopic = $_GET['id'];
+  empty($_GET['id']) ? $idTopic = 0 : $idTopic = htmlspecialchars($_GET['id']);
 
-  if (topicIsset($pdo, $idTopic) == 0) {
+  if ($idTopic = 0 || topicIsset($pdo, $idTopic) == 0) {
     echo "<p>Aucun topic trouvé.</p>";
     echo "<a href='home'>Retour</a>";
     exit();

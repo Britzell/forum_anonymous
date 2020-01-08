@@ -1,7 +1,7 @@
 <?php
   require 'inc/bdd.php';
   restrict();
-  $idTopic = htmlspecialchars($_GET['id']);
+  empty($_GET['id']) ? $idTopic = 0 : $idTopic = htmlspecialchars($_GET['id']);
 
   $comment = getComment($pdo, $idTopic);
 
@@ -9,6 +9,8 @@
     echo "<p>Ce topic n'existe pas.</p>";
     echo "<a href='home'>Retour</a>";
     exit();
+  } else {
+    addView($pdo, $idTopic);
   }
 ?>
 
