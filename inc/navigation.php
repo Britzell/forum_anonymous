@@ -1,13 +1,17 @@
+
 <header>
     <i class="fas fa-bars ouvre" onclick="ouvreMenu()"></i>
     <div class="logo">
-      <img src="img/logo.png" alt="">
+    <a href="home">  <img src="img/logo.png" alt=""></a>
     </div>
     <nav>
       <i class="fas fa-times ferme" onclick="fermeMenu()"></i>
       <ul>
-        <li><a href="topic?id=1">Forum</a></li>
+        <li><a href="list">Forum</a></li>
         <li><a href="createTopic">Créer un nouveau sujet de discution</a></li>
+        <?php if (!empty($_SESSION['user']['id_role']) && $_SESSION['user']['id_role'] > 1): ?>
+          <li><a href="createCategory">Créer une categorie</a></li>
+        <?php endif; ?>
         <li><a href="account">Mon profil</a></li>
         <li><a href="settings">Paramètres</a></li>
         <li><a href="logout"><i class="fas fa-times-circle"></i></a></li>

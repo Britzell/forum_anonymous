@@ -12,7 +12,7 @@
  * getCategory($pdo) Récupérer toutes les catégories
  * ----10----
  * getComment($pdo, $idTopic) Récupérer les commantaires du topic
- * getTopic($pdo) Récupérer tous les topics
+ * getTopicgetTopic($pdo, $idCategory = 0, $limit = 0, $sort = "commentLast") Récupérer les topics
  * getUser($pdo, $id_user) Récupérer données utilisateur
  * setUser($pdo, $idUser) Update données utilisateur
  * editComment($pdo, $idTopic, $idComment, $edit) Editer un commentaire
@@ -213,26 +213,53 @@
     return $comment;
   }
 
-  function getTopic($pdo, $idCategory = false, $limit = 0)
+  function getTopic($pdo, $idCategory = 0, $limit = 0, $sort = "commentLast")
   {
-    if ($idCategory == false) {
+    if ($idCategory == 0) {
       $topic = query($pdo, "SELECT topic.*, user.login FROM topic, user WHERE topic.id_user = user.id_user LIMIT $limit, 30", [$idCategory])->fetchAll();
+      if ($sort == "commentLast") {
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY comment.createAt DESC LIMIT $limit, 30")->fetchAll();
+      } elseif ($sort == "commentFirst") {
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY comment.createAt ASC LIMIT $limit, 30")->fetchAll();
+      } elseif ($sort == "topicLast") {
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY topic.id_topic DESC LIMIT $limit, 30")->fetchAll();
+      } else {
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY topic.id_topic ASC LIMIT $limit, 30")->fetchAll();
+      }
     } else {
-      $topic = query($pdo, "SELECT topic.*, user.login FROM topic, user WHERE id_category = ? AND topic.id_user = user.id_user LIMIT $limit, 30", [$idCategory])->fetchAll();
-    }
-
-    if (empty($topic)) {
-      $topic[0]['id_topic'] = "z";
-      $topic[0]['name'] = "Aucun topic enregistré";
-    } else {
-      foreach ($topic as $k => $t) {
-        $d = query($pdo, "SELECT comment.createAt FROM comment WHERE comment.id_topic = ? ORDER BY id_comment DESC LIMIT 1", [$t['id_topic']])->fetch();
-        $topic[$k]['activity'] = $d['createAt'];
-        $v = query($pdo, "SELECT COUNT(id_view) AS v FROM view WHERE id_topic = ?", [$t['id_topic']])->fetch();
-        $topic[$k]['view'] = $v['v'];
+      if ($sort == "commentLast") {
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY comment.createAt DESC LIMIT $limit, 30", [$idCategory])->fetchAll();
+      } elseif ($sort == "commentFirst") {
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY comment.createAt ASC LIMIT $limit, 30", [$idCategory])->fetchAll();
+      } elseif ($sort == "topicLast") {
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY topic.id_topic DESC LIMIT $limit, 30", [$idCategory])->fetchAll();
+      } else {
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY topic.id_topic ASC LIMIT $limit, 30", [$idCategory])->fetchAll();
       }
     }
-    return $topic;
+
+    $tempo = [];
+    if (empty($topic)) {
+      $tempo[0]['id_topic'] = "z";
+      $tempo[0]['name'] = "Aucun topic enregistré";
+      $tempo[0]['view'] = "0";
+      $tempo[0]['createAt'] = "";
+    } else {
+      foreach ($topic as $k => $t) {
+        $z = 0;
+        foreach ($tempo as $key => $val) {
+          if ($t['id_topic'] == $val['id_topic']) {
+            $z = 1;
+          }
+        }
+        if ($z == 0) {
+          $v = query($pdo, "SELECT COUNT(id_view) AS view FROM view WHERE id_topic = ?", [$t['id_topic']])->fetch();
+          $t['view'] = $v['view'];
+          array_push($tempo, $t);
+        }
+      }
+    }
+    return $tempo;
   }
 
   function getUser($pdo, $idUser)

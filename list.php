@@ -5,6 +5,20 @@
   $topic = getTopic($pdo, $idCategory, $p*30-30);
   $lastPage = countTopic($pdo, false)/30+1;
   $lastPage = (int)$lastPage;
+  empty($_POST['sort']) ? $_POST['sort'] = "" : "";
+
+  if ($_POST['sort'] == "commentFirst") {
+    $topic = getTopic($pdo, $idCategory, $p*30-30, "commentFirst");
+  } elseif ($_POST['sort'] == "topicLast") {
+    $topic = getTopic($pdo, $idCategory, $p*30-30, "topicLast");
+  } elseif ($_POST['sort'] == "topicFirst") {
+    $topic = getTopic($pdo, $idCategory, $p*30-30, "topicFirst");
+  } else {
+    $topic = getTopic($pdo, $idCategory, $p*30-30);
+  }
+
+  require 'inc/header.php';
+    require 'inc/navigation.php';
 ?>
 
 <table>
@@ -17,12 +31,28 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>
+        <form class="" action="" method="post" id="sortForm">
+          <select class="" name="sort" placeholder="Trier" id="sort">
+            <option value="" disabled="disabled">Trier</option>
+            <option value="commentLast" <?= $_POST['sort'] == "commentLast" ? "selected='true'" : "" ?>>Dernière activité</option>
+            <option value="commentFirst" <?= $_POST['sort'] == "commentFirst" ? "selected='true'" : "" ?>>Première activité</option>
+            <option value="topicLast" <?= $_POST['sort'] == "topicLast" ? "selected='true'" : "" ?>>Dernières discution créés</option>
+            <option value="topicFirst" <?= $_POST['sort'] == "topicFirst" ? "selected='true'" : "" ?>>Premières discution</option>
+          </select>
+        </form>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
     <?php foreach ($topic as $k => $t): ?>
       <tr>
-        <td><?= $t['name'] ?></td>
+        <td><a href="topic?id=<?= $t['id_topic'] ?>"><?= $t['name'] ?></a></td>
         <td><?= countComment($pdo, $t['id_topic']) ?></td>
         <td><?= $t['view'] ?></td>
-        <td><?php $date = new DateTime($t['activity']); echo $date->format("d/m/Y à H:i"); ?></td>
+        <td><?php $date = new DateTime($t['createAt']); echo $date->format("d/m/Y à H:i"); ?></td>
       </tr>
     <?php endforeach; ?>
 </tbody>
@@ -62,5 +92,10 @@
         $("#searchData").append('<li>Aucun Topic trouvé</li>');
       });
     });
+
+    $( "#sort" ).change(function() {
+      $('#sortForm').submit();
+    });
   });
+
 </script>
