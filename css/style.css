@@ -1,3 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #code {
   position: fixed;
   top: 0;
@@ -71,6 +77,7 @@ h2{
   color: white;
   text-align: center;
   font-style: italic;
+  padding: 30px 0;
 }
 
 #inscription{
@@ -142,7 +149,7 @@ nav{
   display: flex;
   justify-content: space-around;
   list-style-type: none;
-  padding-top: 70px;
+  padding-top: 7%;
   padding-right: 20px;
 }
 
@@ -152,10 +159,18 @@ nav{
   color: white;
   font-style: italic;
 }
+.naviga ul li i{
+font-size: 25px;
+}
+
+.naviga ul li i:hover{
+color: rgb(215, 176, 117);
+}
 
 .naviga ul li a:hover{
   border-bottom: 2px solid  rgb(215, 176, 117);
 }
+
 
 .bodyback{
   background-image: url('../img/anonymous_mask.jpg');
@@ -172,7 +187,7 @@ h3{
   margin: auto;
   text-align: center;
   width: 50%;
-  border: 3px solid white;
+  border: 3px solid rgb(215, 176, 117);
 }
 
 h1{
@@ -188,4 +203,96 @@ main{
 .logo img{
   width: 35%;
   padding-top: 20px;
+}
+
+.contentSet{
+  height: 480px;
+  background-image: url('../img/banner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+h4{
+  color: white;
+  text-align: center;
+}
+
+.formSet{
+  height: 600px;
+  width: 80%;
+  margin: auto;
+  margin-top: -180px;
+  background-color: white;
+  box-shadow: 0 0 90px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 80px;
+}
+
+.iconSet{
+  color: white;
+  text-align: center;
+  display: block!important;
+  margin: auto;
+  font-size: 80px;
+  padding-top: 60px;
+}
+
+h4{
+  font-size: 32px;
+  text-transform: uppercase;
+}
+
+form.settings{
+  text-align: center;
+  padding-top: 60px;
+}
+
+.changMDP {
+  text-align: center;
+}
+
+.changMDP a{
+    color: rgb(215, 176, 117);
+}
+
+.settings input{
+  background-color: white;
+  color: grey;
+  border-bottom: 2px solid rgb(215, 176, 117);
+}
+
+.formSetMDP{
+  height: 300px;
+  width: 80%;
+  margin: auto;
+  margin-top: -180px;
+  background-color: white;
+  box-shadow: 0 0 90px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 80px;
+}
+
+.newmdp{
+  padding-left: 6%;
+}
+
+@media screen and (max-width: 1700px) {
+  .newmdp{
+    padding-left: 8%;
+  }
+}
+
+@media screen and (max-width: 1450px) {
+  .newmdp{
+    padding-left: 9%;
+  }
+}
+
+.formSetTopic{
+  height: 400px;
+  width: 80%;
+  margin: auto;
+  margin-top: -180px;
+  background-color: white;
+  box-shadow: 0 0 90px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 80px;
 }

@@ -10,6 +10,9 @@
     echo "<a href='home'>Retour</a>";
     exit();
   }
+
+  require 'inc/header.php';
+    require 'inc/navigation.php';
 ?>
 
 <?php foreach ($comment as $k => $c): ?>
