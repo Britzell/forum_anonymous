@@ -255,3 +255,21 @@ form.settings{
   box-shadow: 0 0 90px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 80px;
 }
+
+
+
+
+.pageError {
+  width: 500px;
+  text-align: center;
+  margin: 20vh auto 25px auto;
+}
+
+.pageError h1 {
+  font-size: 92px;
+  padding: 0;
+}
+
+.pageError  {
+  font-size: 32px;
+}

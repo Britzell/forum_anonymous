@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
 
   if (!empty($_POST['name']) && !empty($_POST['description'])) {
     $category = createCategory($pdo, $_POST['name'], $_POST['description']);

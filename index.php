@@ -10,7 +10,15 @@
     if (login($pdo, $_POST['login'], $_POST['password'])) {
       redirect("home");
     } else {
-      $ERROR= "Identifiants incorrects.";
+      $error = "Identifiants incorrects.";
+    }
+  }
+
+  if (!empty($_GET['error'])) {
+    if ($_GET['error'] == 1) {
+      $error = "Vous êtes banni.";
+    } elseif ($_GET['error'] == 2) {
+      $error = "Vous n'avez pas le droit d'accéder à cette page.";
     }
   }
 
@@ -39,13 +47,14 @@
         <label for="password">Mot de passe :</label> <br>
         <input type="password" class="form-control" name="password" placeholder="Mot de passe">
       </div>
+
+      <?php if (!empty($error)): ?>
+        <p class="error"><?= $error ?></p>
+      <?php endif; ?>
+
       <button type="submit" name="button">Login</button>
     </form>
   </div>
-
-<?php if (!empty($ERROR)): ?>
-  <p class="error">Identifiants incorrects.</p>
-<?php endif; ?>
 
 
 <p id="inscription" >Pas encore inscrit ? <br> <a href="register.php">Rejoins la communauté Anonymous</a></p>

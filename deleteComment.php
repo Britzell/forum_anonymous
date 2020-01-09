@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict(2);
+  restrict($pdo, 2);
   $error = 0;
 
   if (!empty($_GET['id']) && !empty($_GET['c']) && $_SESSION['user']['id_role'] > 1) {

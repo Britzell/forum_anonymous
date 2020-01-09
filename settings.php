@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
 
   if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['birthday'])) {
     setUser($pdo, $_SESSION['user']['id_user'], $_POST['firstname'], $_POST['lastname'], $_POST['login'], $_POST['email'], $_POST['birthday']);
@@ -44,5 +44,6 @@
     <button type="submit" name="button">Valider</button>
   </form>
 
-<p class="changMDP"><a href="changePassword">Changer mot de passe</a></p>
+  <p class="changMDP"><a href="changePassword">Changer mot de passe</a></p>
+  <p class="changMDP"><a href="changeAvatar">Changer l'image de profil</a></p>
 </div>

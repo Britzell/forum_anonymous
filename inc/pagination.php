@@ -10,9 +10,9 @@
     $k != "p" ? $url .= $k."=".$g : "";
   }
   isset($_GET['p']) ? $url .= "p=" : (empty($_GET) ? $url .= "?p=" : $url .= "&p=");
-  $np > (int)$lastPage ? $np = (int)$lastPage-1 : "";
-  $lastPage = (int)$lastPage;
+  $p == $lastPage ? ($p > 3 ? $lp = 3 : $lp = 2) : $lp = 2;
   // &laquo; &raquo;
+
 ?>
 <nav>
   <ul class="">
@@ -27,15 +27,17 @@
       </a>
     </li>
     <?php if ($p > 2): ?>
-      <?php for ($i=$p-2; $i < $p; $i++): ?>
+      <?php for ($i=$p-$lp; $i < $p; $i++): ?>
         <li class=""><a class="" href="<?= $url.$i ?>"><?= $i ?></a></li>
       <?php endfor; ?>
     <?php elseif ($p == 2): ?>
       <li class=""><a class="" href="<?= $url."1" ?>">1</a></li>
     <?php endif; ?>
     <li class=" active"><a class="" href="<?= $url.$p ?>"><?= $p ?></a></li>
-    <?php for ($i=$p+1; $i < $p+$np; $i++): ?>
-      <li class=""><a class="" href="<?= $url.$i ?>"><?= $i ?></a></li>
+    <?php for ($i=$p+1; $i < $p+3; $i++): ?>
+      <?php if ($i <= $lastPage): ?>
+        <li class=""><a class="" href="<?= $url.$i ?>"><?= $i ?></a></li>
+      <?php endif; ?>
     <?php endfor; ?>
     <li class="">
       <a class="" href="<?= $p >= (int)$lastPage ? $url.$lastPage : $url.++$p ?>">

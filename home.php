@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
 
   require 'inc/header.php';
     require 'inc/navigation.php';

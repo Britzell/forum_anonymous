@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
 
   if (!empty($_POST['name']) && !empty($_POST['category']) && !empty($_POST['comment'])) {
     $topic = createTopic($pdo, $_POST['name'], $_POST['category'], $_POST['comment']);

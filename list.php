@@ -1,5 +1,6 @@
 <?php
   require 'inc/bdd.php';
+  restrict($pdo);
   empty($_GET['id']) ? $idCategory = 0 : $idCategory = htmlspecialchars($_GET['id']);
   empty($_GET['p']) ? $p = 1 : $p = htmlspecialchars($_GET['p']);
   $topic = getTopic($pdo, $idCategory, $p*30-30);

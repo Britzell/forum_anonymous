@@ -117,11 +117,15 @@
     exit();
   }
 
-  function restrict($nb = 1)
+  function restrict($pdo, $nb = 1)
   {
     session_start();
+    $_SESSION['user'] = query($pdo, "SELECT * FROM user WHERE id_user = ? LIMIT 1", [$_SESSION['user']['id_user']])->fetch();
+    if ($_SESSION['user']['enable'] == 0) {
+      redirect("logout?error=1");
+    }
     if (!isset($_SESSION['user']['id_role']) || $nb == 2 && $_SESSION['user']['id_role'] < 2 || $nb == 3 && $_SESSION['user']['id_role'] < 3) {
-      redirect("logout");
+      redirect("logout?error=2");
     }
   }
 
@@ -200,12 +204,12 @@
 
   // ----10----
 
-  function getComment($pdo, $idTopic, $idComment = false)
+  function getComment($pdo, $idTopic, $idComment = false, $limit = 0)
   {
     if ($idComment != false) {
       $comment = query($pdo, "SELECT comment.*, user.login FROM comment, user WHERE comment.id_comment = ? AND comment.id_user = user.id_user LIMIT 1", [$idComment])->fetch();
     } else {
-      $comment = query($pdo, "SELECT comment.*, user.login FROM comment, user WHERE comment.id_topic = ? AND comment.id_user = user.id_user", [$idTopic])->fetchAll();
+      $comment = query($pdo, "SELECT comment.*, user.login FROM comment, user WHERE comment.id_topic = ? AND comment.id_user = user.id_user ORDER BY createAt ASC LIMIT $limit, 30", [$idTopic])->fetchAll();
     }
     if (empty($comment)) {
       return false;

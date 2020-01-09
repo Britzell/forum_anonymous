@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
   empty($_GET['id']) ? $idTopic = 0 : $idTopic = htmlspecialchars($_GET['id']);
 
   if ($idTopic = 0 || topicIsset($pdo, $idTopic) == 0) {
