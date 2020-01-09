@@ -1,7 +1,7 @@
 <?php
   require 'inc/bdd.php';
   restrict();
-  $idUser = $_GET['id'];
+  empty($_GET['id']) ? $idUser = $_SESSION['user']['id_user'] : $idUser = htmlspecialchars($_GET['id']);
 
   $user = getUser($pdo, $idUser);
   $date = new DateTime($user['birthday']);

@@ -1,23 +1,38 @@
 <?php
   require 'inc/bdd.php';
-  $idCategory = htmlspecialchars($_GET['id']);
-
-  $topic = getTopic($pdo, $idCategory);
-  require 'inc/pagination.php';
+  empty($_GET['id']) ? $idCategory = 0 : $idCategory = htmlspecialchars($_GET['id']);
+  empty($_GET['p']) ? $p = 1 : $p = htmlspecialchars($_GET['p']);
+  $topic = getTopic($pdo, $idCategory, $p*30-30);
+  $lastPage = countTopic($pdo, false)/30+1;
+  $lastPage = (int)$lastPage;
 ?>
 
-<?php foreach ($topic as $k => $t): ?>
-  <p>Nom : <?= $t['name'] ?></p>
-  <p>Nombre de commantaire : <?= countComment($pdo, $t['id_topic']) ?></p>
-<?php endforeach; ?>
+<table>
+  <thead>
+    <tr>
+      <th>Discution</th>
+      <th>Réponse</th>
+      <th>Vues</th>
+      <th>Activité</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($topic as $k => $t): ?>
+      <tr>
+        <td><?= $t['name'] ?></td>
+        <td><?= countComment($pdo, $t['id_topic']) ?></td>
+        <td><?= $t['view'] ?></td>
+        <td><?php $date = new DateTime($t['activity']); echo $date->format("d/m/Y à H:i"); ?></td>
+      </tr>
+    <?php endforeach; ?>
+</tbody>
+</table>
 
 
 <input type="text" id="search" placeholder="Rechercher un topic">
-<ul id="searchData" hidden>
+<ul id="searchData" hidden></ul>
 
-</ul>
-
-
+<?php require 'inc/pagination.php'; ?>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
