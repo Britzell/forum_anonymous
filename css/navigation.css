@@ -1,0 +1,117 @@
+i.fas.fa-bars.ouvre ,
+i.fas.fa-times.ferme   {
+  display: none;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    background-color: black;
+}
+
+nav {
+  background-color: black;
+      padding-top: 3%;
+      width: 60%;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+}
+
+i.fas.fa-times-circle {
+    font-size: 25px;
+}
+
+/* Menu prremier niveau */
+
+nav ul li {
+  text-align: center;
+  position: relative;
+  background-color: black;
+}
+
+nav ul li:hover {
+border-bottom: 2px solid rgb(210, 166, 79);
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+@media screen and (max-width:768px) {
+
+i.fas.fa-bars.ouvre {
+    display: block;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    font-size: 3rem;
+    cursor: pointer;
+    color: white;
+  }
+
+i.fas.fa-times.ferme {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 3rem;
+    z-index: 1;
+    color: white;
+    cursor: pointer;
+    color: black;
+  }
+
+  nav {
+    width: 350px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -350px;
+    transition: 250ms linear all;
+    background-color: white;
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin-top: 50px;
+    background-color: white;
+
+  }
+
+  nav ul li {
+    width: 90%;
+    text-align: left;
+    padding-left: 30px;
+    background-color: white;
+    border-bottom: 2px solid rgb(210, 166, 79);
+    padding: 20px 10px;
+    margin-left: 10px;
+  }
+
+  nav ul li:last-child{
+    border-bottom: 1px solid white;
+  }
+
+  nav ul li a {
+  color: black;
+  }
+
+  nav ul ul {
+    display: flex;
+    position: static;
+    margin-top: 0;
+    background-color: white;
+  }
+
+  .menupresent {
+    left: 0;
+  }
+}

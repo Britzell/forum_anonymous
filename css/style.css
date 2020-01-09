@@ -131,47 +131,6 @@ text-align: center;
   width: 50%;
 }
 
-nav{
-  display: flex;
-  justify-content: space-around;
-    background-color: black;
-}
-
-.logo{
-  width: 40%;
-}
-
-.naviga{
-  width: 60%;
-}
-
-.naviga ul {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-  padding-top: 7%;
-  padding-right: 20px;
-}
-
-.naviga ul li a{
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  font-style: italic;
-}
-.naviga ul li i{
-font-size: 25px;
-}
-
-.naviga ul li i:hover{
-color: rgb(215, 176, 117);
-}
-
-.naviga ul li a:hover{
-  border-bottom: 2px solid  rgb(215, 176, 117);
-}
-
-
 .bodyback{
   background-image: url('../img/anonymous_mask.jpg');
   background-repeat: no-repeat;
@@ -288,7 +247,7 @@ form.settings{
 }
 
 .formSetTopic{
-  height: 400px;
+  height: 300px;
   width: 80%;
   margin: auto;
   margin-top: -180px;
