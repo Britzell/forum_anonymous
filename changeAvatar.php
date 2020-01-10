@@ -12,7 +12,7 @@
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     $check = getimagesize($_FILES["avatar"]["tmp_name"]);
     if($check !== false) {
-      array_push($error, "Le fichier est une image - " . $check["mime"] . ".");
+      //array_push($error, "Le fichier est une image - " . $check["mime"] . ".");
       $uploadOk = 1;
     } else {
       array_push($error, "Le fichier n'est pas une image.");
@@ -40,6 +40,7 @@
     } else {
       if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
         array_push($error, "Le fichier ". basename( $_FILES["avatar"]["name"]). " a été téléchargé.");
+        array_push($error, "La discussion a bien été créé.");
       } else {
         array_push($error, "Désolé, il y a eu une erreur lors du téléchargement de votre image.");
       }

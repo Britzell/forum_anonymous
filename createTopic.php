@@ -1,11 +1,56 @@
 <?php
   require 'inc/bdd.php';
   restrict($pdo);
+  $error = [];
 
   if (!empty($_POST['name']) && !empty($_POST['category']) && !empty($_POST['comment'])) {
-    $topic = createTopic($pdo, $_POST['name'], $_POST['category'], $_POST['comment']);
-    if ($topic != true) {
-      echo $topic;
+
+    // Check if image file is a actual image or fake image
+    if(isset($_FILES["topic"])) {
+      $target_dir = "img/topic/";
+      // $target_file = $target_dir . basename($_FILES["topic"]["name"]);
+      $id = lastIdTopic($pdo)+1;
+      $target_file = $target_dir . $id . ".png";
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+      $check = getimagesize($_FILES["topic"]["tmp_name"]);
+      if($check !== false) {
+        //array_push($error, "Le fichier est une image - " . $check["mime"] . ".");
+        $uploadOk = 1;
+      } else {
+        array_push($error, "Le fichier n'est pas une image.");
+        $uploadOk = 0;
+      }
+
+      // Check if file already exists
+      if (file_exists($target_file)) {
+        $uploadOk = 0;
+      }
+      // Check file size
+      if ($_FILES["topic"]["size"] > 500000) {
+        array_push($error, "Désolé, votre image est trop volumineuse.");
+        $uploadOk = 0;
+      }
+      // Allow certain file formats
+      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") { // && $imageFileType != "gif"
+        array_push($error, "Désolé, seuls les fichiers JPG, JPEG et PNG sont autorisés.");
+        $uploadOk = 0;
+      }
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+        array_push($error, "Désolé, votre fichier n'a pas été téléchargé.");
+        // if everything is ok, try to upload file
+      } else {
+        if (move_uploaded_file($_FILES["topic"]["tmp_name"], $target_file)) {
+          array_push($error, "Le fichier ". basename( $_FILES["topic"]["name"]). " a été téléchargé.");
+          $topic = createTopic($pdo, $_POST['name'], $_POST['category'], $_POST['comment']);
+          if ($topic != true) {
+            array_push($error, $topic);
+          }
+        } else {
+          array_push($error, "Désolé, il y a eu une erreur lors du téléchargement de votre image.");
+        }
+      }
     }
   }
 
@@ -23,7 +68,7 @@
 </div>
 
 <div class="formSetTopic">
-  <form class="settings" action="" method="post">
+  <form class="settings" action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Nom du topic :</label>
       <input type="text" name="name" required>
@@ -40,6 +85,13 @@
       <label for="comment">Commentaire</label>
       <textarea name="comment" cols="70" rows="5" required></textarea>
     </div>
+    <div class="form-group">
+      <label for="topic">Image :</label> <br>
+      <input type="file" name="topic" accept=".jpg,.png,.jpeg" required>
+    </div>
+    <?php foreach ($error as $e): ?>
+      <p><?= $e ?></p>
+    <?php endforeach; ?>
     <button type="submit" name="button">Créer</button>
   </form>
 </div>

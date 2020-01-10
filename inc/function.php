@@ -222,23 +222,23 @@
     if ($idCategory == 0) {
       $topic = query($pdo, "SELECT topic.*, user.login FROM topic, user WHERE topic.id_user = user.id_user LIMIT $limit, 30", [$idCategory])->fetchAll();
       if ($sort == "commentLast") {
-        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY comment.createAt DESC LIMIT $limit, 30")->fetchAll();
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt AS activity FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY comment.createAt DESC LIMIT $limit, 30")->fetchAll();
       } elseif ($sort == "commentFirst") {
-        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY comment.createAt ASC LIMIT $limit, 30")->fetchAll();
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt AS activity FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY comment.createAt ASC LIMIT $limit, 30")->fetchAll();
       } elseif ($sort == "topicLast") {
-        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY topic.id_topic DESC LIMIT $limit, 30")->fetchAll();
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt AS activity FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY topic.id_topic DESC LIMIT $limit, 30")->fetchAll();
       } else {
-        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY topic.id_topic ASC LIMIT $limit, 30")->fetchAll();
+        $topic = query($pdo, "SELECT DISTINCT topic.*, comment.createAt AS activity FROM topic, comment WHERE topic.id_topic = comment.id_topic ORDER BY topic.id_topic ASC LIMIT $limit, 30")->fetchAll();
       }
     } else {
       if ($sort == "commentLast") {
-        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY comment.createAt DESC LIMIT $limit, 30", [$idCategory])->fetchAll();
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt AS activity FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY comment.createAt DESC LIMIT $limit, 30", [$idCategory])->fetchAll();
       } elseif ($sort == "commentFirst") {
-        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY comment.createAt ASC LIMIT $limit, 30", [$idCategory])->fetchAll();
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt AS activity FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY comment.createAt ASC LIMIT $limit, 30", [$idCategory])->fetchAll();
       } elseif ($sort == "topicLast") {
-        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY topic.id_topic DESC LIMIT $limit, 30", [$idCategory])->fetchAll();
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt AS activity FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY topic.id_topic DESC LIMIT $limit, 30", [$idCategory])->fetchAll();
       } else {
-        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY topic.id_topic ASC LIMIT $limit, 30", [$idCategory])->fetchAll();
+        $topic = query($pdo, "SELECT topic.*, user.login, comment.createAt AS activity FROM topic, user, comment WHERE id_category = ? topic.id_user = user.id_user AND topic.id_topic = comment.id_topic ORDER BY topic.id_topic ASC LIMIT $limit, 30", [$idCategory])->fetchAll();
       }
     }
 
@@ -258,6 +258,7 @@
         }
         if ($z == 0) {
           $v = query($pdo, "SELECT COUNT(id_view) AS view FROM view WHERE id_topic = ?", [$t['id_topic']])->fetch();
+          $t['login'] = getLogin($pdo, $t['id_user']);
           $t['view'] = $v['view'];
           array_push($tempo, $t);
         }
@@ -380,4 +381,15 @@
     $count['c'] == 0 ? query($pdo, "INSERT INTO view(ip, id_topic) VALUES (?, ?)", [$ip, $idTopic]) : "";
   }
 
+  function getLogin($pdo, $idUser)
+  {
+    $user = query($pdo, "SELECT login FROM user WHERE id_user = ? LIMIT 1", [$idUser])->fetch();
+    return $user['login'];
+  }
+
+  function lastIdTopic($pdo)
+  {
+    $l = query($pdo, "SELECT id_topic FROM topic ORDER BY id_topic DESC LIMIT 1")->fetch();
+    return $l['id_topic'];
+  }
 ?>

@@ -17,5 +17,5 @@
 
 <div class="pageError">
   <h1><?= $error ?></h1>
-  <p><?= $message ?></p>
+  <p><?= !empty($message) ? $message : "" ?></p>
 </div>
