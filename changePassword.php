@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
 
   if (!empty($_POST['password']) && !empty($_POST['password_confirm'])) {
     $req = changePassword($pdo, $_SESSION['user']['id_user'], $_POST['password'], $_POST['password_confirm']);

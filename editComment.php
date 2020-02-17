@@ -1,6 +1,6 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
   $error = 0;
 
   if (!empty($_GET['id']) && !empty($_GET['c'])) {

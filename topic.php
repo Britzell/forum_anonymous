@@ -1,9 +1,11 @@
 <?php
   require 'inc/bdd.php';
-  restrict();
+  restrict($pdo);
   empty($_GET['id']) ? $idTopic = 0 : $idTopic = htmlspecialchars($_GET['id']);
-
-  $comment = getComment($pdo, $idTopic);
+  empty($_GET['p']) ? $p = 1 : $p = htmlspecialchars($_GET['p']);
+  $comment = getComment($pdo, $idTopic, false, $p*30-30);
+  $lastPage = countComment($pdo, $idTopic)/30+1;
+  $lastPage = (int)$lastPage;
 
   if ($comment == false) {
     echo "<p>Ce topic n'existe pas.</p>";
@@ -41,3 +43,6 @@
     <?php endif; ?>
   <?php endif; ?>
 <?php endforeach; ?>
+
+
+<?php require 'inc/pagination.php'; ?>
