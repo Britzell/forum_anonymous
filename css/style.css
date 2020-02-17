@@ -146,11 +146,9 @@ text-align: center;
 h3{
   color: white;
   font-size: 70px;
-  font-family: 'Rajdhani', sans-serif;
-  margin: auto;
+  font-family: 'Teko', sans-serif;
   text-align: center;
   width: 50%;
-  border: 3px solid rgb(215, 176, 117);
 }
 
 h1{
@@ -160,8 +158,192 @@ h1{
 }
 
 main{
-  padding-top: 190px;
+  padding-top: 170px;
 }
+
+.wrapper{
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+}
+
+h3.glitch{
+color: white;
+font-family: sans-serif;
+font-weight: 800;
+position: relative;
+font-size: 100px;
+padding: 30px;
+}
+
+h3.glitch::before, h3.glitch::after {
+padding: 30px;
+color: white;
+content: "Bienvenue";
+position: absolute;
+width: 100%;
+height: 100%;
+background: black;
+overflow: hidden;
+top: 0;
+}
+
+h3.glitch::before {
+left: 3px;
+text-shadow: -2px 0 red;
+animation-name: glitch-animation-1;
+animation-duration: 2s;
+animation-timing-function: linear;
+animation-delay: 0s;
+animation-iteration-count: infinite;
+animation-direction: reverse-alternate;
+}
+
+h3.glitch::after {
+left: -3px;
+text-shadow: -2px 0 blue;
+animation-name: glitch-animation-2;
+animation-duration: 2s;
+animation-timing-function: linear;
+animation-delay: 0s;
+animation-iteration-count: infinite;
+animation-direction: reverse-alternate;
+}
+
+@keyframes glitch-animation-1 {
+  0% {
+    clip: rect(1px, 850px, 79px, 30px);
+  }
+  5% {
+    clip: rect(36px, 850px, 150px, 30px);
+  }
+  10% {
+    clip: rect(147px, 850px, 1px, 30px);
+  }
+  15% {
+    clip: rect(119px, 850px, 25px, 30px);
+  }
+  20% {
+    clip: rect(4px, 850px, 73px, 30px);
+  }
+  25% {
+    clip: rect(32px, 850px, 60px, 30px);
+  }
+  30% {
+    clip: rect(3px, 850px, 12px, 30px);
+  }
+  35% {
+    clip: rect(17px, 850px, 48px, 30px);
+  }
+  40% {
+    clip: rect(87px, 850px, 114px, 30px);
+  }
+  45% {
+    clip: rect(99px, 850px, 28px, 30px);
+  }
+  50% {
+    clip: rect(60px, 850px, 49px, 30px);
+  }
+  55% {
+    clip: rect(53px, 850px, 26px, 30px);
+  }
+  60% {
+    clip: rect(32px, 850px, 109px, 30px);
+  }
+  65% {
+    clip: rect(58px, 850px, 69px, 30px);
+  }
+  70% {
+    clip: rect(39px, 850px, 130px, 30px);
+  }
+  75% {
+    clip: rect(95px, 850px, 88px, 30px);
+  }
+  80% {
+    clip: rect(40px, 850px, 22px, 30px);
+  }
+  85% {
+    clip: rect(71px, 850px, 141px, 30px);
+  }
+  90% {
+    clip: rect(39px, 850px, 119px, 30px);
+  }
+  95% {
+    clip: rect(110px, 850px, 109px, 30px);
+  }
+  100% {
+    clip: rect(17px, 850px, 22px, 30px);
+  }
+}
+@keyframes glitch-animation-2 {
+  0% {
+    clip: rect(62px, 850px, 44px, 30px);
+  }
+  5% {
+    clip: rect(72px, 850px, 121px, 30px);
+  }
+  10% {
+    clip: rect(40px, 850px, 47px, 30px);
+  }
+  15% {
+    clip: rect(27px, 850px, 3px, 30px);
+  }
+  20% {
+    clip: rect(62px, 850px, 22px, 30px);
+  }
+  25% {
+    clip: rect(16px, 850px, 35px, 30px);
+  }
+  30% {
+    clip: rect(138px, 850px, 101px, 30px);
+  }
+  35% {
+    clip: rect(121px, 850px, 84px, 30px);
+  }
+  40% {
+    clip: rect(65px, 850px, 128px, 30px);
+  }
+  45% {
+    clip: rect(49px, 850px, 6px, 30px);
+  }
+  50% {
+    clip: rect(33px, 850px, 82px, 30px);
+  }
+  55% {
+    clip: rect(106px, 850px, 8px, 30px);
+  }
+  60% {
+    clip: rect(18px, 850px, 132px, 30px);
+  }
+  65% {
+    clip: rect(82px, 850px, 107px, 30px);
+  }
+  70% {
+    clip: rect(24px, 850px, 121px, 30px);
+  }
+  75% {
+    clip: rect(30px, 850px, 95px, 30px);
+  }
+  80% {
+    clip: rect(34px, 850px, 74px, 30px);
+  }
+  85% {
+    clip: rect(36px, 850px, 32px, 30px);
+  }
+  90% {
+    clip: rect(123px, 850px, 106px, 30px);
+  }
+  95% {
+    clip: rect(26px, 850px, 113px, 30px);
+  }
+  100% {
+    clip: rect(21px, 850px, 134px, 30px);
+  }
+}
+
+
+
+
 
 .logo img{
   width: 35%;
@@ -215,13 +397,13 @@ form.settings{
 }
 
 .changMDP a{
-    color: rgb(215, 176, 117);
+    color: #860013;
 }
 
 .settings input{
   background-color: white;
   color: grey;
-  border-bottom: 2px solid rgb(215, 176, 117);
+  border-bottom: 2px solid #860013;
 }
 
 .formSetMDP{
@@ -260,7 +442,6 @@ form.settings{
   margin-bottom: 80px;
 }
 
-<<<<<<< HEAD
 .create{
   text-align: left;
   padding-left: 40px
@@ -304,6 +485,15 @@ select{
   box-sizing: border-box;
 }
 
+.intro{
+  text-align: center;
+  margin-top: 100px;
+  z-index: 45;
+}
+
+.intro p{
+  padding: 15px 0;
+}
 
 @media screen and (max-width: 507px) {
   #section05 {
@@ -349,248 +539,4 @@ select{
 
 .demo a:hover {
   opacity: .5;
-=======
-
-
-/*----PAGE ERROR----*/
-.pageError {
-  width: 500px;
-  text-align: center;
-  margin: 20vh auto 25px auto;
-}
-
-.pageError h1 {
-  font-size: 92px;
-  padding: 0;
-}
-
-.pageError  {
-  font-size: 32px;
-}
-
-/*----TOPIC----*/
-
-.listTopic {
-  background-color: #222;
-}
-
-.listTopic section {
-  max-width: 1080px;
-  width: 100%;
-  margin: auto;
-}
-
-.topicSort {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.topicH1 {
-  padding: 25px 0;
-}
-
-.sort {
-  padding-right: 80px;
-}
-
-.firstTopic {
-  max-width: 1080px;
-  width: 100%;
-  margin: auto;
-}
-
-.firstTopic .card {
-  width: 30%;
-}
-
-.firstTopic .cardImg {
-  height: 175px;
-}
-
-.firstTopic .cardImg--hover {
-  height: 175px;
-}
-
-.cards {
-  width: 100%;
-  display: flex;
-  display: -webkit-flex;
-  justify-content: center;
-  -webkit-justify-content: center;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.card *{
-  box-sizing: border-box;
-}
-
-.cardClock {
-  width: 15px;
-  vertical-align: middle;
-  fill: #AD7D52;
-}
-.cardTime {
-  font-size: 12px;
-  color: #AD7D52;
-  vertical-align: middle;
-  margin-left: 5px;
-}
-
-.cardClock-info {
-  float: right;
-}
-
-.cardImg {
-  visibility: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 135px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-
-}
-
-.cardInfo-hover {
-  position: absolute;
-  padding: 16px;
-  width: 100%;
-  opacity: 0;
-  top: 0;
-}
-
-.cardImg--hover {
-  transition: 0.2s all ease-out;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
-  position: absolute;
-  height: 135px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  top: 0;
-
-}
-
-.card {
-  margin: 5px;
-  transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
-  background-color: #fff; /* Color card hover */
-  width: 22%;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
-}
-
-.card:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
-  transform: scale(1.10, 1.10);
-  z-index: 10;
-}
-
-.cardInfo {
-  z-index: 2;
-  background-color: #ededed; /* Color card info */
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding: 16px 24px 24px 24px;
-}
-
-.cardCategory {
-  text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 2px;
-  font-weight: 500;
-  color: #868686;
-}
-
-.cardImg {
-
-}
-
-.cardBy {
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.cardAuthor {
-  font-weight: 600;
-  text-decoration: none;
-  color: #AD7D52;
-}
-
-.card:hover .cardImg--hover {
-  height: 100%;
-  opacity: 0.3;
-}
-
-.card:hover .cardInfo {
-  background-color: transparent;
-  position: relative;
-}
-
-.card:hover .cardInfo-hover {
-  opacity: 1;
-}
-
-@media screen and (max-width: 980px) {
-  .card {
-    width: 30%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .card {
-    width: 48%;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .card {
-    width: 100%;
-  }
-}
-
-/*----LIST CATEGORY----*/
-
-.sectionSearch {
-  padding-bottom: 50px;
-}
-
-.sectionSearch a {
-  color: black;
-}
-
-.shadowSearch {
-  box-shadow: 0 0 90px 0 rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 20px;
-}
-
-.listCategory {
-  padding: 0 20px;
-}
-
-.listCategory ul {
-  /* list-style: none; */
-}
-
-.search {
-  text-align: center;
-}
-
-.search input {
-  padding: 20px;
-  margin-bottom: 0px;
-}
-
-.search ul {
-  list-style: none;
->>>>>>> a8d66e361390e9e084f1b0d8f3aa120653c3e4d4
 }

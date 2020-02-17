@@ -39,14 +39,24 @@ nav ul li {
 }
 
 nav ul li:hover {
-border-bottom: 2px solid rgb(210, 166, 79);
+border-bottom: 2px solid #860013;
+transition: 0.4s linear all;
 }
+
+nav ul li:last-child:hover {
+  border: none;
+  }
 
 nav ul li a {
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   font-style: italic;
+}
+
+.cross:hover{
+  color: #860013;
+  border: none;
 }
 
 @media screen and (max-width:900px) {

@@ -14,7 +14,7 @@
         <?php endif; ?>
         <li><a href="account">Mon profil</a></li>
         <li><a href="settings">Paramètres</a></li>
-        <li><a href="logout"><i class="fas fa-times-circle"></i></a></li>
+        <li><a href="logout"><i class="fas fa-times-circle cross"></i></a></li>
       </ul>
     </nav>
   </header>
