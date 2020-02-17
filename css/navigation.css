@@ -3,6 +3,10 @@ i.fas.fa-times.ferme   {
   display: none;
 }
 
+.logo{
+  width: 30%;
+}
+
 header {
     display: flex;
     width: 100%;
@@ -13,7 +17,7 @@ header {
 nav {
   background-color: black;
       padding-top: 3%;
-      width: 60%;
+      width: 100%;
 }
 
 nav ul {
@@ -45,7 +49,7 @@ nav ul li a {
   font-style: italic;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:900px) {
 
 i.fas.fa-bars.ouvre {
     display: block;

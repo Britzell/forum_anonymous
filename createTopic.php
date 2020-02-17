@@ -22,13 +22,13 @@
 
 </div>
 
-<div class="formSetTopic">
+<div class="formNewTopic">
   <form class="settings" action="" method="post">
-    <div class="form-group">
+    <div class="form-group create">
       <label for="name">Nom du topic :</label>
       <input type="text" name="name" required>
     </div>
-    <div class="form-group">
+    <div class="form-group create">
       <label for="category">Categorie :</label>
       <select class="" name="category" required>
         <?php foreach ($category as $c): ?>
@@ -36,8 +36,8 @@
         <?php endforeach; ?>
       </select>
     </div>
-    <div class="form-group">
-      <label for="comment">Commentaire</label>
+    <div class="form-group create">
+      <label for="comment">Contenu du topic :</label>
       <textarea name="comment" cols="70" rows="5" required></textarea>
     </div>
     <button type="submit" name="button">Créer</button>
