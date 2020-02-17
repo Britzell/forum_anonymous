@@ -8,6 +8,8 @@
 
   $lastTopic = getLastUserTopic($pdo, $idUser, 5);
   $nCharacter = 128;
+  require 'inc/header.php';
+    require 'inc/navigation.php';
 ?>
 
 <p>Login : <?= $user['login'] ?></p>
@@ -22,4 +24,5 @@
 <?php foreach ($lastTopic as $k => $l): ?>
   <p><?= $l['name'] ?></p>
   <p><?= substr($l['content'], 0, $nCharacter) ?></p>
-<?php endforeach; ?>
+<?php endforeach;
+?>
