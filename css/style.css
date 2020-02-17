@@ -260,7 +260,6 @@ form.settings{
   margin-bottom: 80px;
 }
 
-<<<<<<< HEAD
 .create{
   text-align: left;
   padding-left: 40px
@@ -349,7 +348,7 @@ select{
 
 .demo a:hover {
   opacity: .5;
-=======
+}
 
 
 /*----PAGE ERROR----*/
@@ -592,5 +591,4 @@ select{
 
 .search ul {
   list-style: none;
->>>>>>> a8d66e361390e9e084f1b0d8f3aa120653c3e4d4
 }
