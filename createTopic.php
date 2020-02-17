@@ -67,15 +67,12 @@
 
 </div>
 
-<<<<<<< HEAD
-<div class="formNewTopic">
+<!-- <div class="formNewTopic">
   <form class="settings" action="" method="post">
-    <div class="form-group create">
-=======
+    <div class="form-group create"> -->
 <div class="formSetTopic">
   <form class="settings" action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
->>>>>>> a8d66e361390e9e084f1b0d8f3aa120653c3e4d4
       <label for="name">Nom du topic :</label>
       <input type="text" name="name" required>
     </div>
