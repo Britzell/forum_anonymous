@@ -35,8 +35,40 @@
 <p>Nouveau sur le forum ? Laissez nous vous expliquer comment ça fonctione...</p>
 </div>
 
+<div class="content-intro">
+  <div class="content-gauche">
+  <p><strong> Etape 1 : <br></strong> Retrouvez sur la page <a href="#">forum</a> l'ensemble des sujets de discutions et articles postés sur le blog par nos utilisateurs </p>
+  </div>
+  <div class="content-droite">
+  
+  </div>
+</div>
+<div class="content-intro">
+  <div class="content-gauche">
 
-<p>Etape 1 : Retrouvez sur la page <a href="#">forum</a> l'ensemble des sujets de discutions et articles postés sur le blog par nos utilisateurs </p>
-<p>Etape 2: Créer un nouveau sujet de discution sur la page <a href="#">sujet de discutions (Attention, ne pas oublier de préciser la catégorie !)</a></p>
-<p>Etape 3: Editer votre sujet si vous remarquer des erreurs ou des détails à ajouter</p>
-<p>Etape 4: Vous pouvez gérer et modifier vos informations sur la page <a href="#">paramètres</a> </p>
+  </div>
+  <div class="content-droite">
+  <p><strong> Etape 2 : <br></strong> Créer un nouveau sujet de discution sur la page <a href="#">sujet de discutions (Attention, ne pas oublier de préciser la catégorie !)</a></p>
+  </div>
+</div>
+<div class="content-intro">
+  <div class="content-gauche">
+  <p><strong> Etape 3 : <br></strong> Editer votre sujet si vous remarquer des erreurs ou des détails à ajouter</p>
+  </div>
+  <div class="content-droite">
+  
+  </div>
+</div>
+<div class="content-intro">
+  <div class="content-gauche">
+ 
+  </div>
+  <div class="content-droite">
+  <p><strong> Etape 4 : <br></strong> Vous pouvez gérer et modifier vos informations sur la page <a href="#">paramètres</a> </p>
+  </div>
+</div>
+
+
+
+
+
