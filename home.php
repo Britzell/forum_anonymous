@@ -29,14 +29,14 @@
 </div>
 
 <div class="intro">
-<p>Notre forum permet de nous retrouver et de discuter de sujet d'actualités</p>
+<p>Notre forum permet de nous retrouver et de discuter de sujet d'actualités.</p>
 
 <p>Comment ça marche ?</p>
 <p>Nouveau sur le forum ? Laissez nous vous expliquer comment ça fonctione...</p>
 </div>
 
 <div class="content-intro">
-  <div class="content-gauche">
+  <div class="content-gauche-actif">
   <p><strong> Etape 1 : <br></strong> Retrouvez sur la page <a href="#">forum</a> l'ensemble des sujets de discutions et articles postés sur le blog par nos utilisateurs </p>
   </div>
   <div class="content-droite">
@@ -47,12 +47,12 @@
   <div class="content-gauche">
 
   </div>
-  <div class="content-droite">
-  <p><strong> Etape 2 : <br></strong> Créer un nouveau sujet de discution sur la page <a href="#">sujet de discutions (Attention, ne pas oublier de préciser la catégorie !)</a></p>
+  <div class="content-droite-actif">
+  <p><strong> Etape 2 : <br></strong> Créer un nouveau sujet de discution sur la page <a href="createTopic.php">sujet de discutions </a> (Attention, ne pas oublier de préciser la catégorie !)</p>
   </div>
 </div>
 <div class="content-intro">
-  <div class="content-gauche">
+  <div class="content-gauche-actif">
   <p><strong> Etape 3 : <br></strong> Editer votre sujet si vous remarquer des erreurs ou des détails à ajouter</p>
   </div>
   <div class="content-droite">
@@ -63,8 +63,8 @@
   <div class="content-gauche">
  
   </div>
-  <div class="content-droite">
-  <p><strong> Etape 4 : <br></strong> Vous pouvez gérer et modifier vos informations sur la page <a href="#">paramètres</a> </p>
+  <div class="content-droite-actif">
+  <p><strong> Etape 4 : <br></strong> Vous pouvez gérer et modifier vos informations sur la page <a href="settings.php">paramètres</a> </p>
   </div>
 </div>
 

@@ -70,7 +70,7 @@
 <!-- <div class="formNewTopic">
   <form class="settings" action="" method="post">
     <div class="form-group create"> -->
-<div class="formSetTopic">
+<div class="formNewTopic">
   <form class="settings" action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Nom du topic :</label>
@@ -89,7 +89,7 @@
       <textarea name="comment" cols="70" rows="5" required></textarea>
     </div>
     <div class="form-group">
-      <label for="topic">Image :</label> <br>
+      <label for="topic">Image :</label>
       <input type="file" name="topic" accept=".jpg,.png,.jpeg" required>
     </div>
     <?php foreach ($error as $e): ?>

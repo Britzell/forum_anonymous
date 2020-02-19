@@ -79,7 +79,7 @@
           <button type="submit" name="button">Valider</button>
     </form>
   </div>
-
+  <p id="inscription" >Déjà inscrit ? <br> <a href="index.php">Connecte toi ici</a></p>
 
 
 <?php require 'inc/footer.php' ?>

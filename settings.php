@@ -20,7 +20,7 @@
 </div>
 
 <div class="formSet">
-  <form class="settings" action="" method="post">
+  <form class="settings" style="text-align:center;" action="" method="post">
     <div class="form-group">
       <label for="name">Prénom :</label> <br>
       <input type="text" name="firstname" value="<?= $user['firstname'] ?>" required>

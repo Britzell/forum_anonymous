@@ -6,8 +6,9 @@
 
 body{
   color: white;
-  background-color: black;
   font-family: 'Teko', sans-serif;
+  background-color: black;
+  font-size: 18px;
 }
 
 #code {
@@ -361,7 +362,7 @@ h4{
 }
 
 .formSet{
-  height: 600px;
+  height: 630px;
   width: 80%;
   margin: auto;
   margin-top: -180px;
@@ -385,12 +386,17 @@ h4{
 }
 
 form.settings{
+  padding: 60px 50px 0 40px;
+}
+
+form.settings-center{
+  padding: 60px 50px 0 40px;
   text-align: center;
-  padding-top: 60px;
 }
 
 .changMDP {
   text-align: center;
+  padding-right: 50px;
 }
 
 .changMDP a{
@@ -429,6 +435,28 @@ form.settings{
   }
 }
 
+.account-content{
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 80px;
+}
+
+.text-account{
+  text-align: center;
+  margin-top: 150px;
+  width: 35%;
+  height: 250px;
+    background-color: white;
+    color: black;
+    padding-top: 30px;
+}
+
+.img-account{
+  width: 45%;
+}
+
 .formSetTopic{
   height: 300px;
   width: 80%;
@@ -441,7 +469,6 @@ form.settings{
 
 .create{
   text-align: left;
-  padding-left: 40px
 }
 
 .formNewTopic{
@@ -486,12 +513,8 @@ select{
   text-align: center;
   margin-top: 100px;
   z-index: 45;
-  box-shadow: 0 0 90px 0 rgba(53, 22, 22, 0.5);
   width: 50%;
   margin: auto;
-  -webkit-box-shadow: -1px 0px 31px 1px rgba(168,16,16,0.76);
-  -moz-box-shadow: -1px 0px 31px 1px rgba(168,16,16,0.76);
-  box-shadow: -1px 0px 31px 1px rgba(168,16,16,0.76);
 }
 
 .intro p{
@@ -503,13 +526,28 @@ select{
   justify-content: space-between;
   width: 80%;
   margin: auto;
-  margin-top: 50px;
+  margin-bottom: 70px;
   text-align: center;
   font-size: 25px;
 }
 
-.content-droite, .content-gauche{
+.content-intro a{
+  color: #860013;
+  text-decoration: none;
+  font-size: 38px;
+}
+
+.content-droite-actif, .content-gauche-actif{
+  -webkit-box-shadow: -1px 0px 31px 1px rgba(168,16,16,0.76);
+  -moz-box-shadow: -1px 0px 31px 1px rgba(168,16,16,0.76);
+  box-shadow: -1px 0px 31px 1px rgba(168,16,16,0.76);
+  padding: 30px;
   width: 45%;
+}
+
+
+.content-droite, .content-gauche, .content-droite-actif, .content-gauche-actif {
+  width: 35%;
 }
 
 .content-intro strong{
@@ -548,15 +586,12 @@ select{
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
   color: #fff;
-  font: normal 400 20px/1 'Josefin Sans', sans-serif;
+  font: normal 400 28px/1 'Teko', sans-serif;
   letter-spacing: .1em;
   text-decoration: none;
   transition: opacity .3s;
   margin-top: -50px;
 }
-
-
-
 
 .demo a:hover {
   opacity: .5;
