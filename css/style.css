@@ -845,3 +845,7 @@ select{
 .search ul {
   list-style: none;
 }
+
+.settings p {
+  color: black;
+}

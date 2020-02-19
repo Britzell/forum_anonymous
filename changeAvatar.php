@@ -21,7 +21,10 @@
 
     // Check if file already exists
     if (file_exists($target_file)) {
-      $uploadOk = 0;
+      rename($target_file, $target_dir . $_SESSION['user']['id_user'] . "_back.png");
+      if (file_exists($target_file)) {
+        $uploadOk = 0;
+      }
     }
     // Check file size
     if ($_FILES["avatar"]["size"] > 500000) {
@@ -40,9 +43,12 @@
     } else {
       if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) {
         array_push($error, "Le fichier ". basename( $_FILES["avatar"]["name"]). " a été téléchargé.");
-        array_push($error, "La discussion a bien été créé.");
+        array_push($error, "Votre image de profil a bien été modifier.");
+        unlink($target_dir . $_SESSION['user']['id_user'] . "_back.png");
       } else {
         array_push($error, "Désolé, il y a eu une erreur lors du téléchargement de votre image.");
+        unlink($target_dir);
+        rename($target_dir . $_SESSION['user']['id_user'] . "_back.png", $target_file);
       }
     }
   }

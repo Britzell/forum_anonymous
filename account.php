@@ -6,7 +6,7 @@
   $user = getUser($pdo, $idUser);
   $date = new DateTime($user['birthday']);
 
-  $lastTopic = getLastUserTopic($pdo, $idUser, 5);
+  $lastTopic = getLastUserTopic($pdo, $idUser, 3);
   $nCharacter = 128;
   require 'inc/header.php';
     require 'inc/navigation.php';
