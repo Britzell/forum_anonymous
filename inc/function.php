@@ -354,7 +354,7 @@
 
   function getLastUserTopic($pdo, $idUser, $n)
   {
-    $last = query($pdo, "SELECT DISTINCT comment.id_topic, comment.content, topic.* FROM comment, topic WHERE comment.id_user = ? AND comment.id_topic = topic.id_topic ORDER BY comment.id_comment DESC LIMIT $n", [$idUser])->fetchAll();
+    $last = query($pdo, "SELECT topic.* FROM topic WHERE id_user = ? ORDER BY createAt DESC LIMIT $n", [$idUser])->fetchAll();
     return $last;
   }
 
