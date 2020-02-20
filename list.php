@@ -23,7 +23,7 @@
   }
 
   $category = getCategory($pdo);
-  
+
   require 'inc/header.php';
     require 'inc/navigation.php';
 ?>
@@ -65,6 +65,9 @@
     <div class="topicSort">
       <div class="topicH1">
         <h1><?= $header ?></h1>
+        <?php if ($idCategory != 0): ?>
+          <a href="list">Retour au forum</a>
+        <?php endif; ?>
       </div>
       <div class="sort">
         <form class="" action="" method="get" id="sortForm">
