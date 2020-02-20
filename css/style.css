@@ -30,6 +30,14 @@ border-radius: 20px;
 text-align: center;
 }
 
+@media screen and (max-width: 1200px) {
+  .formulaireConnexion{
+    width: 60%;
+    margin-bottom: 30px;
+    margin-top: 40px;
+  }
+}
+
 .formulaireConnexion img{
   display: block;
   text-align: center;
@@ -130,6 +138,75 @@ text-align: center;
   width: 100%;
 }
 
+@media screen and (max-width: 1200px) {
+  #formulaireflex{
+    display: block;
+  }
+  .part1, .part2{
+    width: auto!important;
+  }
+  #red{
+    width: 60%;
+    margin: auto;
+    margin-top: 100px;
+  }
+}
+
+
+@media screen and (max-width: 560px) {
+.formpart1 img{
+  width: 80%;
+}
+#red{
+  width: 80%;
+  margin-bottom: 50px;
+}
+.bodyback{
+  background-size: contain;
+}
+
+#section05 a{
+  margin-top: 150px;
+}
+.demo a{
+  bottom: 0;
+}
+.wrapper{
+  justify-content: flex-start!important;
+    width: 90%;
+    margin-top: 400px!important;
+    margin: auto!important;
+}
+h3.glitch{
+  font-size: 60px!important;
+  width: 100%!important;
+}
+main{
+  padding-top: 500px!important;
+}
+.logo{
+  width: 70%!important;
+}
+header{
+  display: block!important;
+}
+.bodyback{
+  height: 85vh!important;
+}
+.content-droite, .content-gauche, .content-droite-actif, .content-gauche-actif{
+  width: 100%!important;
+}
+.content-intro{
+  display: block!important;
+}
+.changMDP{
+  padding-right: 0!important;
+}
+form.settings {
+  padding: 60px 40px 0 40px!important;
+}
+}
+
 .part1, .part2{
   width: 50%;
 }
@@ -150,7 +227,7 @@ h3{
 }
 
 h1{
-  color: rgb(215, 176, 117);
+  color: #860013;
   padding-left: 80px;
     font-size: 46px;
 }
@@ -444,13 +521,18 @@ form.settings-center{
 }
 
 .text-account{
-  text-align: center;
+  padding-left: 20px;
   margin-top: 150px;
   width: 35%;
-  height: 250px;
+  height: 350px;
     background-color: white;
     color: black;
     padding-top: 30px;
+}
+
+.text-account strong{
+  text-decoration: underline;
+  font-size: 22px;
 }
 
 .img-account{
@@ -472,7 +554,6 @@ form.settings-center{
 }
 
 .formNewTopic{
-  height: 360px;
   width: 40%;
   margin: auto;
   margin-top: -180px;
@@ -513,8 +594,10 @@ select{
   text-align: center;
   margin-top: 100px;
   z-index: 45;
-  width: 50%;
-  margin: auto;
+  width: 80%;
+    margin: auto;
+    font-size: 30px;
+    margin-bottom: 80px;
 }
 
 .intro p{
@@ -558,6 +641,14 @@ select{
   #section05 {
     display: none;
   }
+  .formNewTopic{
+    width: 80%;
+  }
+  textarea {
+    width: 100%;
+}
+.newmdp {
+  padding-left: 0;
 }
 
 
@@ -676,16 +767,18 @@ select{
 
 .card *{
   box-sizing: border-box;
+  color: black;
+  font-size: 18px;
 }
 
 .cardClock {
   width: 15px;
   vertical-align: middle;
-  fill: #AD7D52;
+  fill: #860013;
 }
 .cardTime {
   font-size: 12px;
-  color: #AD7D52;
+  color:#860013;
   vertical-align: middle;
   margin-left: 5px;
 }
@@ -781,7 +874,7 @@ select{
 .cardAuthor {
   font-weight: 600;
   text-decoration: none;
-  color: #AD7D52;
+  color: #860013;
 }
 
 .card:hover .cardImg--hover {
@@ -812,8 +905,23 @@ select{
 
 @media screen and (max-width: 560px) {
   .card {
-    width: 100%;
+    width: 80%;
+    margin: 20px;
   }
+}
+
+.img-profil img{
+  width: 10%;
+}
+
+.content-topic{
+  width: 80%;
+  margin: auto;
+}
+
+.content-topic h4{
+  text-align: left;
+  margin-top: 30px;
 }
 
 /*----LIST CATEGORY----*/

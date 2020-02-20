@@ -22,10 +22,10 @@
       <?php endif; ?>
   </div>
   <div class="text-account">
-          <p>Login : <?= $user['login'] ?></p>
-        <p>Rôle : <?= getRole($pdo, $user['id_role']) ?></p>
+          <p> <strong> Login : </strong><?= $user['login'] ?></p>
+        <p><strong>Rôle : </strong> <?= getRole($pdo, $user['id_role']) ?></p>
 
-        <p>Vos sujet de discution postés sur le forum :</p>
+        <p><strong>Vos derniers sujets de discution postés sur le forum :</strong></p>
         <?php foreach ($lastTopic as $k => $l): ?>
           <p><?= $l['name'] ?></p>
           <p><?= substr($l['content'], 0, $nCharacter) ?></p>
