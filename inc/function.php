@@ -121,7 +121,9 @@
 
   function restrict($pdo, $nb = 1)
   {
-    session_start();
+    if (empty($_SESSION['user'])) {
+      session_start();
+    }
     $_SESSION['user'] = query($pdo, "SELECT * FROM user WHERE id_user = ? LIMIT 1", [$_SESSION['user']['id_user']])->fetch();
     if ($_SESSION['user']['enable'] == 0) {
       redirect("logout?error=1");
@@ -160,7 +162,7 @@
     ]);
 
     if ($req) {
-      return true;
+      return $pdo->lastInsertId();
     } else {
       return false;
     }

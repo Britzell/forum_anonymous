@@ -98,6 +98,14 @@ h2{
   padding-bottom: 20px;
 }
 
+.separ{
+  height: 2px;
+  width: 60%;
+  margin: auto;
+  background-color: rgb(68, 68, 68);
+  margin-top: 70px;
+}
+
 #inscription a{
   color: white;
   font-weight: bold;
@@ -578,6 +586,22 @@ form.settings-center{
   width: 45%;
 }
 
+.content-info-topic {
+  display: flex;
+  justify-content: space-between;
+}
+
+#cmt198{
+  width: 55%;
+}
+
+.edit a{
+  color: #860013;
+  padding-right: 10px;
+  font-weight: bold;
+  font-size: 28px;
+}
+
 .formSetTopic{
   height: 300px;
   width: 80%;
@@ -843,7 +867,7 @@ select{
 
 img.img-profil:hover {
   opacity: 0.3;
-  transition: 1s all linear;
+  transition: 0.5s all linear;
 }
 
 img.img-profil{
@@ -857,11 +881,10 @@ img.img-profil{
 
 .person{
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 50%;
-  right: 50%;
+  top: 50%; left: 50%; /* à 50%/50% du parent référent */
+  transform: translate(-50%, -50%);
   font-size: 44px;
+  z-index: -45;
 }
 
 .cards {
@@ -970,33 +993,11 @@ img.img-profil{
   text-align: left;
 }
 
-.cardImg {
-
-<<<<<<< HEAD
-.cardImg {
-=======
-<<<<<<< HEAD
-}
-
 .cardBy {
   font-size: 12px;
   font-weight: 500;
   color: grey;
 }
-=======
-<<<<<<< HEAD
-.cardImg {
-=======
-  }
-
-  .cardBy {
-    font-size: 12px;
-    font-weight: 500;
-    color: grey;
-  }
->>>>>>> fc123b72f6b1c4271be125f73dacbe9d933c6b24
->>>>>>> 5d79aa93b7ae986a2632c3ab7297fda4935ce15d
->>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
 
 .cardAuthor {
   font-weight: 600;
@@ -1004,30 +1005,10 @@ img.img-profil{
   color: #860013;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 .card:hover .cardImg--hover {
   height: 100%;
   opacity: 0.3;
 }
-=======
-<<<<<<< HEAD
->>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
-.cardBy {
-  font-size: 12px;
-  font-weight: 500;
-}
-<<<<<<< HEAD
-=======
-=======
-  .card:hover .cardImg--hover {
-    height: 100%;
-    opacity: 0.3;
-  }
->>>>>>> fc123b72f6b1c4271be125f73dacbe9d933c6b24
->>>>>>> 5d79aa93b7ae986a2632c3ab7297fda4935ce15d
->>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
 
 .card:hover .cardInfo {
   background-color: transparent;
@@ -1105,15 +1086,6 @@ img.img-profil{
   list-style: none;
 }
 
-<<<<<<< HEAD
-  .settings p {
-    color: black;
-  }
-=======
-.settings p {
-  color: black;
-}
-
 
 .settings p {
   color: black;
@@ -1129,4 +1101,3 @@ img.img-profil{
 .mt-100 {
   margin-top: 100px;
 }
->>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
