@@ -12,7 +12,7 @@
  * getCategory($pdo) Récupérer toutes les catégories
  * ----10----
  * getComment($pdo, $idTopic) Récupérer les commantaires du topic
- * getTopicgetTopic($pdo, $idCategory = 0, $limit = 0, $sort = "commentLast") Récupérer les topics
+ * getTopic($pdo, $idCategory = 0, $limit = 0, $sort = "commentLast") Récupérer les topics
  * getUser($pdo, $id_user) Récupérer données utilisateur
  * setUser($pdo, $idUser) Update données utilisateur
  * editComment($pdo, $idTopic, $idComment, $edit) Editer un commentaire
@@ -25,6 +25,7 @@
  * topicIsset($pdo, $idTopic) Le topic exist ?
  * getIp() Récupérer l'ip de l'utilisateur
  * addView($pdo, $idTopic) Ajouté un vue sur un topic, interval 20 minutes
+ * hotTopic($pdo, $idCategory, $n) Topic les plus vue de la category (0 = All) et le nombre de résultat
  */
 
   function query($pdo, $sql, $param = [])
@@ -391,5 +392,44 @@
   {
     $l = query($pdo, "SELECT id_topic FROM topic ORDER BY id_topic DESC LIMIT 1")->fetch();
     return $l['id_topic'];
+  }
+
+  function hotTopic($pdo, $idCategory, $n)
+  {
+    if ($idCategory) {
+      $top = query($pdo, "SELECT id_topic, count(id_topic) FROM view GROUP BY id_topic ORDER BY count(id_topic) DESC LIMIT $n")->fetchAll();
+    } else {
+      $top = query($pdo, "SELECT id_topic, count(id_topic) FROM view GROUP BY id_topic ORDER BY count(id_topic) DESC LIMIT $n")->fetchAll();
+    }
+
+    $topic = [];
+
+    foreach ($top as $k => $t) {
+      array_push($topic, query($pdo, "SELECT topic.*, user.login, comment.createAt AS activity FROM topic, user, comment WHERE topic.id_topic = ? AND topic.id_user = user.id_user AND topic.id_topic = comment.id_topic LIMIT 1", [$t['id_topic']])->fetch());
+    }
+
+    $tempo = [];
+    if (empty($topic)) {
+      $tempo[0]['id_topic'] = "z";
+      $tempo[0]['name'] = "Aucun topic enregistré";
+      $tempo[0]['view'] = "0";
+      $tempo[0]['createAt'] = "";
+    } else {
+      foreach ($topic as $k => $t) {
+        $z = 0;
+        foreach ($tempo as $key => $val) {
+          if ($t['id_topic'] == $val['id_topic']) {
+            $z = 1;
+          }
+        }
+        if ($z == 0) {
+          $v = query($pdo, "SELECT COUNT(id_view) AS view FROM view WHERE id_topic = ?", [$t['id_topic']])->fetch();
+          $t['login'] = getLogin($pdo, $t['id_user']);
+          $t['view'] = $v['view'];
+          array_push($tempo, $t);
+        }
+      }
+    }
+    return $tempo;
   }
 ?>
