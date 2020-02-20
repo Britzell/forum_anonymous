@@ -863,6 +863,7 @@ select{
 
 .cardImg {
 
+<<<<<<< HEAD
 }
 
 .cardBy {
@@ -870,6 +871,19 @@ select{
   font-weight: 500;
   color: grey;
 }
+=======
+<<<<<<< HEAD
+.cardImg {
+=======
+  }
+
+  .cardBy {
+    font-size: 12px;
+    font-weight: 500;
+    color: grey;
+  }
+>>>>>>> fc123b72f6b1c4271be125f73dacbe9d933c6b24
+>>>>>>> 5d79aa93b7ae986a2632c3ab7297fda4935ce15d
 
 .cardAuthor {
   font-weight: 600;
@@ -877,10 +891,24 @@ select{
   color: #860013;
 }
 
+<<<<<<< HEAD
 .card:hover .cardImg--hover {
   height: 100%;
   opacity: 0.3;
 }
+=======
+<<<<<<< HEAD
+.cardBy {
+  font-size: 12px;
+  font-weight: 500;
+}
+=======
+  .card:hover .cardImg--hover {
+    height: 100%;
+    opacity: 0.3;
+  }
+>>>>>>> fc123b72f6b1c4271be125f73dacbe9d933c6b24
+>>>>>>> 5d79aa93b7ae986a2632c3ab7297fda4935ce15d
 
 .card:hover .cardInfo {
   background-color: transparent;
@@ -964,6 +992,18 @@ select{
 
 .settings p {
   color: black;
+}
+
+
+.settings p {
+  color: black;
+}
+
+.list-cat{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  list-style-type: none;
 }
 
 .mt-100 {

@@ -115,7 +115,7 @@
     </div>
     <div class="shadowSearch">
       <article class="listCategory">
-        <ul>
+        <ul class="list-cat">
           <?php foreach ($category as $k => $c): ?>
             <li><a href="?id=<?= $c['id_category'] ?>"><?= $c['name'] ?></a></li>
           <?php endforeach; ?>
