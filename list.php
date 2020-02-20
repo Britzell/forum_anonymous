@@ -169,26 +169,30 @@
   $(document).ready(function(){
     $("#search").on('input', function postinput(){
       var value = $(this).val();
-      $.ajax({
-        url: 'json/search.php',
-        data: { search: value },
-        type: 'post'
-      }).done(function(data) {
-        // console.log('Done: ', data);
+      if (value == '') {
         $('#searchData').empty();
-        $('#searchData').show("slow");
-        $.each(JSON.parse(data),function(key, value) {
-          if (value.name == "NULL") {
-            $("#searchData").append('<li>Aucun Topic trouvé</li>');
-          } else {
-            $("#searchData").append('<li><a href="topic?id='+value.id_topic+'">'+value.name+'</a></li>');
-          }
+      } else {
+        $.ajax({
+          url: 'json/search.php',
+          data: { search: value },
+          type: 'post'
+        }).done(function(data) {
+          // console.log('Done: ', data);
+          $('#searchData').empty();
+          $('#searchData').show("slow");
+          $.each(JSON.parse(data),function(key, value) {
+            if (value.name == "NULL") {
+              $("#searchData").append('<li>Aucun Topic trouvé</li>');
+            } else {
+              $("#searchData").append('<li><a href="topic?id='+value.id_topic+'">'+value.name+'</a></li>');
+            }
+          });
+        }).fail(function() {
+          $('#searchData').empty();
+          $('#searchData').show("slow");
+          $("#searchData").append('<li>Aucun Topic trouvé</li>');
         });
-      }).fail(function() {
-        $('#searchData').empty();
-        $('#searchData').show("slow");
-        $("#searchData").append('<li>Aucun Topic trouvé</li>');
-      });
+      }
     });
 
     $( "#sort" ).change(function() {
