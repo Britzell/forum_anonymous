@@ -57,6 +57,6 @@
   </div>
 
 
-<p id="inscription" >Pas encore inscrit ? <br> <a href="register.php">Rejoins la communauté Anonymous</a></p>
+<p id="inscription" >Pas encore inscrit ? <br> <a href="register">Rejoins la communauté Anonymous</a></p>
 </div>
 <?php require 'inc/footer.php' ?>

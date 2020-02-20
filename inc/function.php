@@ -26,8 +26,7 @@
  * getIp() Récupérer l'ip de l'utilisateur
  * addView($pdo, $idTopic) Ajouté un vue sur un topic, interval 20 minutes
  * hotTopic($pdo, $idCategory, $n) Topic les plus vue de la category (0 = All) et le nombre de résultat
- * getNameCategory($pdo, $id)
- * getContentCmt($pdo, $id)
+ * getNameCategory($pdo, $id) Récupérer nom de la catégories
  */
 
   function query($pdo, $sql, $param = [])
@@ -438,10 +437,5 @@
   {
     $name = query($pdo, "SELECT name FROM category WHERE id = ?", [$id])->fetch();
     return $name['name'];
-  }
-
-  function getContentCmt($pdo, $id)
-  {
-    return query($pdo, "SELECT * FROM comment WHERE id_comment = ?", [$id])->fetch();
   }
 ?>
