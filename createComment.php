@@ -4,10 +4,10 @@
     $idTopic = htmlspecialchars($_POST['id']);
 
     if (!empty($_POST['comment'])) {
-      $comment = createComment($pdo, $_POST['comment'], $idTopic, $_SESSION['user']['id_user']);
+      $cmt = createComment($pdo, $_POST['comment'], $idTopic, $_SESSION['user']['id_user']);
       ?>
         <script type="text/javascript">
-          window.location.href = "<?= $_SESSION['REQUEST_SCHEME'] ?>://<?= $_SESSION['HTTP_HOST'] ?>/topic?id=<?= $idTopic ?>#cmt<?= $comment ?>";
+          window.location.href = "<?= $_SESSION['REQUEST_SCHEME'] ?>://<?= $_SESSION['HTTP_HOST'] ?>/topic?id=<?= $idTopic ?>#cmt<?= $cmt ?>";
         </script>
       <?php
     }
