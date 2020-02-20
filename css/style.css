@@ -473,7 +473,15 @@ form.settings-center{
 
 .changMDP {
   text-align: center;
-  padding-right: 50px;
+}
+
+#searchData a{
+  color: white;
+  font-size: 30px;
+}
+
+#searchData{
+  list-style-type: none;
 }
 
 .changMDP a{
@@ -518,6 +526,37 @@ form.settings-center{
   display: flex;
   justify-content: space-between;
   padding-top: 80px;
+}
+
+@media screen and (max-width: 560px) {
+  .account-content{
+    display: block;
+    width: 80%;
+  }
+  .img-account{
+    width: 100%!important;
+  }
+  .img-account img{
+    width: 100%;
+    margin: auto;
+    display: block;
+  }
+  .text-account{
+    margin-top: 0!important;
+    width: 100%!important;
+    height: auto!important;
+    margin-bottom: 60px!important;
+  }
+}
+
+
+.list-cat{
+  width: 100%;
+  padding-bottom: 60px;
+}
+
+.list-cat a{
+  color: white;
 }
 
 .text-account{
@@ -588,6 +627,53 @@ select{
   -webkit-animation: sdb05 1.5s infinite;
   animation: sdb05 1.5s infinite;
   box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 507px) {
+  #section05 {
+    display: none;
+  }
+}
+
+
+@-webkit-keyframes sdb05 {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: rotate(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+
+.demo a {
+  position: absolute;
+  bottom: 20px;
+  left: 46%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #fff;
+  font: normal 400 20px/1 'Josefin Sans', sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: opacity .3s;
+  margin-top: -50px;
+}
+
+
+
+
+.demo a:hover {
+  opacity: .5;
 }
 
 .intro{
@@ -864,6 +950,9 @@ select{
 .cardImg {
 
 <<<<<<< HEAD
+.cardImg {
+=======
+<<<<<<< HEAD
 }
 
 .cardBy {
@@ -884,6 +973,7 @@ select{
   }
 >>>>>>> fc123b72f6b1c4271be125f73dacbe9d933c6b24
 >>>>>>> 5d79aa93b7ae986a2632c3ab7297fda4935ce15d
+>>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
 
 .cardAuthor {
   font-weight: 600;
@@ -892,16 +982,21 @@ select{
 }
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 .card:hover .cardImg--hover {
   height: 100%;
   opacity: 0.3;
 }
 =======
 <<<<<<< HEAD
+>>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
 .cardBy {
   font-size: 12px;
   font-weight: 500;
 }
+<<<<<<< HEAD
+=======
 =======
   .card:hover .cardImg--hover {
     height: 100%;
@@ -909,6 +1004,7 @@ select{
   }
 >>>>>>> fc123b72f6b1c4271be125f73dacbe9d933c6b24
 >>>>>>> 5d79aa93b7ae986a2632c3ab7297fda4935ce15d
+>>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
 
 .card:hover .cardInfo {
   background-color: transparent;
@@ -990,6 +1086,11 @@ select{
   list-style: none;
 }
 
+<<<<<<< HEAD
+  .settings p {
+    color: black;
+  }
+=======
 .settings p {
   color: black;
 }
@@ -1009,3 +1110,4 @@ select{
 .mt-100 {
   margin-top: 100px;
 }
+>>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098

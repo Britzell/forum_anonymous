@@ -19,8 +19,8 @@
 
   
   <section id="section05" class="demo">
-    <a href="#section06" class="scroll-to-id" data-scroll-to-id="pricing"><span></span>Découvrir</a>
-  </section>
+          <a href="#section06" class="scroll-to-id" data-scroll-to-id="pricing"><span></span>Découvrir</a>
+        </section>
 
 
 </main>
@@ -37,7 +37,7 @@
 
 <div class="content-intro">
   <div class="content-gauche-actif">
-  <p><strong> Etape 1 : <br></strong> Retrouvez sur la page <a href="#">forum</a> l'ensemble des sujets de discutions et articles postés sur le blog par nos utilisateurs </p>
+  <p><strong> Etape 1 : <br></strong> Retrouvez sur la page <a href="list.php">forum</a> l'ensemble des sujets de discutions et articles postés sur le blog par nos utilisateurs </p>
   </div>
   <div class="content-droite">
   
