@@ -7,18 +7,26 @@
     $idTopic = htmlspecialchars($_GET['id']);
     $idComment = htmlspecialchars($_GET['c']);
 
+    $cmt = getComment($pdo, $idTopic, $idComment);
+
+
+    if ($cmt['id_user'] != $_SESSION['user']['id_user']) {
+      die("Ce commentaire ne vous appartiens pas !");
+    }
+
     if (!empty($_POST['edit'])) {
-      $req = editComment($pdo, $idTopic, $idComment, $_POST['edit']);
-      if ($req == false) {
+      $req = editComment($pdo, $idComment, $_POST['edit']);
+      if ($req) {
+        redirect("topic?id=$idTopic#c$idComment");
+      } else {
         echo "Opération échouée.";
       }
     }
 
-    $comment = getComment($pdo, $idTopic, $idComment);
+    $cmt = getComment($pdo, $idTopic, $idComment);
 
-    if ($comment == false) {
-      $error = 1;
-    } elseif ($comment['id_user'] != $_SESSION['user']['id_user']) {
+
+    if ($cmt == false) {
       $error = 1;
     }
   } else {
@@ -45,7 +53,7 @@
 <form class="settings" action="?id=<?= $idTopic ?>&c=<?= $idComment ?>" method="post">
   <div class="form-group">
     <label for="edit">Edit :</label>
-    <textarea name="edit" cols="70" rows="5" required></textarea>
+    <textarea name="edit" cols="95" rows="10" required><?= $cmt['content'] ?></textarea>
   </div>
   <button type="submit" name="button">Valider</button>
 </form>

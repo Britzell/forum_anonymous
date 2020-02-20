@@ -11,7 +11,7 @@
  * createTopic($pdo, $name, $category, $comment) Créer un topic
  * getCategory($pdo) Récupérer toutes les catégories
  * ----10----
- * getComment($pdo, $idTopic) Récupérer les commantaires du topic
+ * getComment($pdo, $idTopic, $idComment = false, $limit = 0) Récupérer les commantaires du topic
  * getTopic($pdo, $idCategory = 0, $limit = 0, $sort = "commentLast") Récupérer les topics
  * getUser($pdo, $id_user) Récupérer données utilisateur
  * setUser($pdo, $idUser) Update données utilisateur
@@ -27,6 +27,7 @@
  * addView($pdo, $idTopic) Ajouté un vue sur un topic, interval 20 minutes
  * hotTopic($pdo, $idCategory, $n) Topic les plus vue de la category (0 = All) et le nombre de résultat
  * getNameCategory($pdo, $id)
+ * getContentCmt($pdo, $id)
  */
 
   function query($pdo, $sql, $param = [])
@@ -290,14 +291,11 @@
     return $user;
   }
 
-  function editComment($pdo, $idTopic, $idComment, $edit)
+  function editComment($pdo, $idComment, $edit)
   {
-    $edit = htmlspecialchars($edit);
-
-    $req = query($pdo, "UPDATE comment SET edit = ?, updateAt = NOW() WHERE id_comment = ? AND id_topic = ?", [
-      $edit,
-      $idComment,
-      $idTopic
+    $req = query($pdo, "UPDATE comment SET content = ?, updateAt = NOW() WHERE id_comment = ?", [
+      htmlspecialchars($edit),
+      $idComment
     ]);
 
     if ($req) {
@@ -440,5 +438,10 @@
   {
     $name = query($pdo, "SELECT name FROM category WHERE id = ?", [$id])->fetch();
     return $name['name'];
+  }
+
+  function getContentCmt($pdo, $id)
+  {
+    return query($pdo, "SELECT * FROM comment WHERE id_comment = ?", [$id])->fetch();
   }
 ?>

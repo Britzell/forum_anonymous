@@ -38,7 +38,7 @@
           <img class="img-profil position" src="img/default.png" alt="default user logo">
         <?php endif; ?>
       </div>
-      <div id="cmt<?= $c['id_comment'] ?>" class="cmt">
+      <div id="c<?= $c['id_comment'] ?>" class="cmt">
         <h4>Contenu :</h4>
         <p style="font-size: 22px;"><?= $c['content'] ?></p>
       <div class="edit">
@@ -75,7 +75,7 @@
   </div>
   <?php foreach ($comment as $k => $c): ?>
     <?php if ($c['enable'] == 1 && $k != 0): ?>
-      <div class="img-profil commentaire">
+      <div class="img-profil commentaire" id="c<?= $c['id_comment'] ?>">
         <?php if (file_exists("img/avatar/".$c['id_user'].".png")): ?>
           <div class="photo-com">
             <img src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo">
