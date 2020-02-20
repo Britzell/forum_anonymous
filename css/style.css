@@ -976,3 +976,10 @@ select{
   .settings p {
     color: black;
   }
+
+  .list-cat{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    list-style-type: none;
+  }
