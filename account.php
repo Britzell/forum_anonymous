@@ -25,18 +25,8 @@
       <p> <strong> Login : </strong><?= $user['login'] ?></p>
       <p><strong>Rôle : </strong> <?= getRole($pdo, $user['id_role']) ?></p>
 
-      <p><strong>Vos derniers sujets de discution postés sur le forum :</strong></p>
-    </div>
-
-  </div>
-
-</div>
-
-<section class="firstTopic mt-100">
-  <div class="topicH1">
-    <h2>Derniers sujets de discution postés par <?= $user['login'] ?></h2>
-  </div>
-
+      <p><strong>Derniers sujets de discution postés par <?= $user['login'] ?></strong></p>
+      <section class="firstTopic mt-100">
   <div class="cards">
     <?php foreach ($lastTopic as $k => $t): ?>
       <article class="card car<?= $k ?>">
@@ -60,6 +50,11 @@
     <?php endforeach; ?>
   </div>
 </section>
+    </div>
+
+  </div>
+
+</div>
 
 
 <style>

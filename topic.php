@@ -21,20 +21,21 @@
 
 <div class="content-topic">
 <h4>Sujet créer par :</h4>
-<div class="img-profil">
+<div>
   <?php foreach ($comment as $k => $c): ?>
     <?php if ($c['enable'] == 1): ?>
       <?php if (file_exists("img/avatar/".$c['id_user'].".png")): ?>
-        <img src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo">
+        <img class="img-profil position" src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo">
       <?php else: ?>
         <img src="img/default.png" alt="default user logo">
       <?php endif; ?>
+      <p class="person"><?= $c['login'] ?></p>
 </div>  
 <div>
-        <p><?= $c['login'] ?></p>
+
 </div>
 <div>
-        <h4>Message :</h4>
+        <h4>Contenu du sujet :</h4>
         <p><?= $c['content'] ?></p>
 </div>
 <div>

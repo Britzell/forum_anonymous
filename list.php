@@ -70,16 +70,11 @@
 
   <section class="sectionTopic">
     <div class="topicSort">
-<<<<<<< HEAD
       <div>
         <h1  class="topicH1"><?= $header ?></h1>
-=======
-      <div class="topicH1">
-        <h1><?= $header ?></h1>
         <?php if ($idCategory != 0): ?>
           <a href="list">Retour au forum</a>
         <?php endif; ?>
->>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
       </div>
       <div class="sort">
         <form class="" action="" method="get" id="sortForm">

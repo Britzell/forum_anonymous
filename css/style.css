@@ -561,9 +561,9 @@ form.settings-center{
 
 .text-account{
   padding-left: 20px;
-  margin-top: 150px;
-  width: 35%;
-  height: 350px;
+  margin-top: 80px;
+  width: 40%;
+  height: 430px;
   background-color: white;
   color: black;
   padding-top: 30px;
@@ -841,6 +841,29 @@ select{
   height: 175px;
 }
 
+img.img-profil:hover {
+  opacity: 0.3;
+  transition: 1s all linear;
+}
+
+img.img-profil{
+  display: block;
+  margin: auto;
+}
+
+.position{
+  position: relative;
+}
+
+.person{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  right: 50%;
+  font-size: 44px;
+}
+
 .cards {
   width: 100%;
   display: flex;
@@ -1032,10 +1055,6 @@ select{
     width: 80%;
     margin: 20px;
   }
-}
-
-.img-profil img{
-  width: 10%;
 }
 
 .content-topic{
