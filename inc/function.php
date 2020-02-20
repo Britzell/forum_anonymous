@@ -396,16 +396,16 @@
 
   function hotTopic($pdo, $idCategory, $n)
   {
-    if ($idCategory) {
+    /*if ($idCategory) {
+      $top = query($pdo, "SELECT view.id_topic, count(view.id_topic) FROM view, topic WHERE view.id_view = topic.id_topic AND topic.id_category = ? GROUP BY view.id_topic ORDER BY count(view.id_topic) DESC LIMIT $n", [$idCategory])->fetchAll();
+    } else {*/
       $top = query($pdo, "SELECT id_topic, count(id_topic) FROM view GROUP BY id_topic ORDER BY count(id_topic) DESC LIMIT $n")->fetchAll();
-    } else {
-      $top = query($pdo, "SELECT id_topic, count(id_topic) FROM view GROUP BY id_topic ORDER BY count(id_topic) DESC LIMIT $n")->fetchAll();
-    }
+    /*}*/
 
     $topic = [];
 
     foreach ($top as $k => $t) {
-      array_push($topic, query($pdo, "SELECT topic.*, user.login, comment.createAt AS activity FROM topic, user, comment WHERE topic.id_topic = ? AND topic.id_user = user.id_user AND topic.id_topic = comment.id_topic LIMIT 1", [$t['id_topic']])->fetch());
+      array_push($topic, query($pdo, "SELECT topic.*, comment.createAt AS activity FROM topic, comment WHERE topic.id_topic = ? AND topic.id_topic = comment.id_topic LIMIT 1", [$t['id_topic']])->fetch());
     }
 
     $tempo = [];
