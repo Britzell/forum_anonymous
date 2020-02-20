@@ -854,6 +854,13 @@ select{
   color: #868686;
 }
 
+.cardTitle {
+  width: 100%;
+  color: black;
+  font-size: 16px;
+  text-align: left;
+}
+
 .cardImg {
 
 }
@@ -861,6 +868,7 @@ select{
 .cardBy {
   font-size: 12px;
   font-weight: 500;
+  color: grey;
 }
 
 .cardAuthor {

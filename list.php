@@ -23,35 +23,13 @@
   }
 
   $category = getCategory($pdo);
-
+  
   require 'inc/header.php';
     require 'inc/navigation.php';
 ?>
 
 <div class="listTopic">
-
-<!--
-  <div class="firstTopic">
-    <?php foreach ($topic as $k => $t): ?>
-        <a href="topic?id=<?= $t['id_topic'] ?>">
-          <div class="topicHeader">
-            <div class="topicImage">
-              <?php if (file_exists("img/topic/".$t['id_topic'].".png")): ?>
-                <img src="img/topic/<?= $t['id_topic'] ?>.png" alt="<?= $t['name'] ?> topic logo">
-              <?php else: ?>
-                <img src="img/topic.png" alt="default topic logo">
-              <?php endif; ?>
-              <p><?= $t['name'] ?></p>
-            </div>
-          </div>
-        </a>
-        <div class="topicInfo">
-          <p>Par: <?= $t['login'] ?> le <?php $date = new DateTime($t['createAt']); echo $date->format("d/m/Y à H:i"); ?></p>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  </div> -->
-
+  <?php if ($topic[0]['id_topic'] !== 'z'): ?>
   <section class="firstTopic">
     <div class="topicH1">
       <h1>Discussions les plus vues</h1>
@@ -74,7 +52,7 @@
             </a>
             <div class="cardInfo">
               <span class="cardCategory"><?= $category[$t['id_category']-1]['name'] ?></span>
-              <h6 class="card__title"><?= $t['name'] ?></h6>
+              <h3 class="cardTitle"><?= $t['name'] ?></h3>
               <span class="cardBy">by <a href="#" class="cardAuthor" title="author"><?= $t['login'] ?></a></span>
             </div>
           </article>
@@ -121,7 +99,7 @@
           </a>
           <div class="cardInfo">
             <span class="cardCategory"><?= $category[$t['id_category']-1]['name'] ?></span>
-            <h6 class="card__title"><?= $t['name'] ?></h6>
+            <h3 class="cardTitle"><?= $t['name'] ?></h3>
             <span class="cardBy">by <a href="#" class="cardAuthor" title="author"><?= $t['login'] ?></a></span>
           </div>
         </article>
@@ -161,6 +139,14 @@
   }
   <?php endforeach; ?>
 </style>
+<?php else: ?>
+<section class="firstTopic">
+  <div class="topicH1">
+    <h1>Aucune disctuion n'est reliée à cette catégorie.</h1>
+  </div>
+
+  </section>
+<?php endif; ?>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 

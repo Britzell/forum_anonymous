@@ -16,7 +16,7 @@
 <div class="account-content">
   <div class="img-account">
         <?php if (file_exists("img/avatar/".$user['id_user'].".png")): ?>
-        <img src="img/avatar/<?= $user['id_user'] ?>.png" alt="<?= $user['login'] ?> user logo">
+        <img src="img/avatar/<?= $user['id_user'] ?>.png?t=<?= time() ?>" alt="<?= $user['login'] ?> user logo">
       <?php else: ?>
         <img src="img/default.png" alt="default user logo">
       <?php endif; ?>
