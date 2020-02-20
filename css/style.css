@@ -106,6 +106,14 @@ h2{
   margin-top: 70px;
 }
 
+.separ2{
+  height: 2px;
+  width: 40%;
+  margin: auto;
+  background-color: rgb(68, 68, 68);
+  margin-bottom: 50px;
+}
+
 #inscription a{
   color: white;
   font-weight: bold;
@@ -591,8 +599,34 @@ form.settings-center{
   justify-content: space-between;
 }
 
-#cmt198{
+.cmt{
   width: 55%;
+}
+
+.img-profil.commentaire {
+  display: flex;
+}
+
+.photo-com img{
+  width: 100%;
+}
+
+.photo-com{
+  width: 10%;
+}
+
+.id, .date{
+  text-align: center;
+}
+
+.content-commentaire{
+  margin-left: 50px;
+  width: 90%;
+}
+
+.content-com a{
+  color: #860013;
+  font-size: 24px;
 }
 
 .edit a{
@@ -654,9 +688,22 @@ select{
 }
 
 
-@media screen and (max-width: 507px) {
+@media screen and (max-width: 560px) {
   #section05 {
     display: none;
+  }
+  .content-info-topic{
+    display: block;
+  }
+  img.img-profil{
+    width: 50%;
+  }
+  .cmt{
+    width: 100%;
+    text-align: justify;
+  }
+  .separ2{
+    margin-top: 30px;
   }
 }
 

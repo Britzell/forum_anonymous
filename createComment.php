@@ -18,7 +18,7 @@
 <form action="" method="post">
   <div class="form-group">
     <input type="hidden" name="id" value="<?= htmlspecialchars($_GET['id']) ?>">
-    <label for="comment">Commentaire :</label>
+    <label for="comment">Votre commentaire :</label> <br>
     <textarea name="comment" cols="70" rows="5" required></textarea>
   </div>
   <button type="submit" name="button">Créer</button>

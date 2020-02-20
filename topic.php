@@ -38,7 +38,7 @@
           <img class="img-profil position" src="img/default.png" alt="default user logo">
         <?php endif; ?>
       </div>
-      <div id="cmt<?= $c['id_comment'] ?>">
+      <div id="cmt<?= $c['id_comment'] ?>" class="cmt">
         <h4>Contenu :</h4>
         <p style="font-size: 22px;"><?= $c['content'] ?></p>
       <div class="edit">
@@ -60,6 +60,7 @@
         break;
       endif; ?>
     <?php endforeach; ?>
+    <?php require 'createComment.php'; ?>
     </div>
   </div>
 </div>
@@ -78,38 +79,41 @@
         <?php if (file_exists("img/avatar/".$c['id_user'].".png")): ?>
           <div class="photo-com">
           <img src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo">
-          </div>
-        <?php else: ?>
-          <img src="img/default.png" alt="default user logo">
-        <?php endif; ?>
-        <div class="content-comm">
-        <p><?= $c['content'] ?></p>
-      <div class="id">
+          <div class="id">
         <p><?= $c['login'] ?></p>
       </div>
       <div class="date">
         <p>Le <?php $date = new DateTime($c['createAt']); echo $date->format("d/m/y à H:i"); ?></p>
       </div>
+          </div>
+        <?php else: ?>
+          <img src="img/default.png" alt="default user logo">
+        <?php endif; ?>
+
+        <div class="content-commentaire">
+        <div class="content-comm">
+        <p><?= $c['content'] ?></p>
+        <a href="deleteComment?id=<?= $idTopic ?>&c=<?= $c['id_comment'] ?>">Supprimer</a>
+      </div>
       </div>
 
-      <div class="qui es-tu">
+
+      </div>
+
+      <div class="separ2"></div>
+
+      <div class="img-profil commentaire">
         <?php if (!empty($c['edit'])): ?>
           <h4>Edit :</h4>
           <p><?= $c['edit'] ?></p>
           <p>Le <?php $date = new DateTime($c['updateAt']); echo $date->format("d/m/y à H:i"); ?></p>
         <?php endif; ?>
         <?php if ($c['id_user'] == $_SESSION['user']['id_user']): ?>
-          <a href="editComment?id=<?= $idTopic ?>&c=<?= $c['id_comment'] ?>&k=<?= $k ?>">Edit</a>
         <?php endif; ?>
         <?php if ($_SESSION['user']['id_role'] > 1): ?>
-          <a href="deleteComment?id=<?= $idTopic ?>&c=<?= $c['id_comment'] ?>">Supprimer</a>
         <?php endif; ?>
       <?php endif; ?>
     <?php endforeach; ?>
   </div>
-</div>
-</div>
 
 <?php require 'inc/pagination.php'; ?>
-
-<?php require 'createComment.php'; ?>

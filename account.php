@@ -26,7 +26,7 @@
       <p><strong>Rôle : </strong> <?= getRole($pdo, $user['id_role']) ?></p>
 
       <p><strong>Derniers sujets de discution postés par <?= $user['login'] ?></strong></p>
-      <section class="firstTopic mt-100">
+      <section class="firstTopic mt-100" style="margin-top: 10px;">
   <div class="cards">
     <?php foreach ($lastTopic as $k => $t): ?>
       <article class="card car<?= $k ?>">
