@@ -54,7 +54,7 @@
         <div class="cardInfo">
           <span class="cardCategory"><?= getNameCategory($pdo, $t['id_category']-1) ?></span>
           <h3 class="cardTitle"><?= $t['name'] ?></h3>
-          <span class="cardBy">by <a href="account?id=<?= $_GET['id'] ?>" class="cardAuthor" title="author"><?= $user['login'] ?></a></span>
+          <span class="cardBy">by <a href="account?id=<?= $_GET['id'] ?? $idUser ?>" class="cardAuthor" title="author"><?= $user['login'] ?? $idUser ?></a></span>
         </div>
       </article>
     <?php endforeach; ?>
