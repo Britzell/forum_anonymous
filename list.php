@@ -29,10 +29,18 @@
 ?>
 
 <div class="listTopic">
+
   <?php if ($topic[0]['id_topic'] !== 'z'): ?>
   <section class="firstTopic">
-    <div class="topicH1">
-      <h1>Discussions les plus vues</h1>
+  <div>
+      <h1 class="topicH1">Rechercher parmis les topics</h1>
+    </div>
+  <article class="search">
+        <input type="text" id="search" placeholder="Rechercher un topic">
+        <ul id="searchData" hidden></ul>
+      </article>
+    <div>
+      <h1 class="topicH1" >Discussions les plus vues</h1>
     </div>
 
     <div class="cards">
@@ -63,8 +71,8 @@
 
   <section class="sectionTopic">
     <div class="topicSort">
-      <div class="topicH1">
-        <h1><?= $header ?></h1>
+      <div>
+        <h1  class="topicH1"><?= $header ?></h1>
       </div>
       <div class="sort">
         <form class="" action="" method="get" id="sortForm">
@@ -108,8 +116,8 @@
   </section>
 
   <section class="sectionSearch">
-    <div class="topicH1">
-      <h1>Liste des categories</h1>
+    <div>
+      <h1 class="topicH1">Liste des categories</h1>
     </div>
     <div class="shadowSearch">
       <article class="listCategory">
@@ -118,11 +126,6 @@
             <li><a href="?id=<?= $c['id_category'] ?>"><?= $c['name'] ?></a></li>
           <?php endforeach; ?>
         </ul>
-      </article>
-      <article class="search">
-        <ul id="searchData" hidden></ul>
-        <input type="text" id="search" placeholder="Rechercher un topic">
-      </article>
     </div>
   </section>
 
@@ -141,8 +144,8 @@
 </style>
 <?php else: ?>
 <section class="firstTopic">
-  <div class="topicH1">
-    <h1>Aucune disctuion n'est reliée à cette catégorie.</h1>
+  <div >
+    <h1 class="topicH1">Aucune disctuion n'est reliée à cette catégorie.</h1>
   </div>
 
   </section>
