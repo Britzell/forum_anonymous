@@ -46,7 +46,7 @@
 
     <div class="cards">
       <?php foreach ($hotTopic as $k => $t): ?>
-        <article class="card car<?= $k ?>">
+        <article class="card carHot<?= $k ?>">
           <div class="cardInfo-hover">
             <div class="cardClock-info">
               <svg class="cardClock"  viewBox="0 0 24 24"><path d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
@@ -70,16 +70,11 @@
 
   <section class="sectionTopic">
     <div class="topicSort">
-<<<<<<< HEAD
-      <div>
-        <h1  class="topicH1"><?= $header ?></h1>
-=======
       <div class="topicH1">
         <h1><?= $header ?></h1>
         <?php if ($idCategory != 0): ?>
           <a href="list">Retour au forum</a>
         <?php endif; ?>
->>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
       </div>
       <div class="sort">
         <form class="" action="" method="get" id="sortForm">
@@ -141,6 +136,16 @@
 <style>
   <?php foreach ($topic as $k => $t): ?>
   .car<?= $k ?> .cardImg, .car<?= $k ?> .cardImg--hover {
+    <?php if (file_exists("img/topic/".$t['id_topic'].".png")): ?>
+    background-image: url('img/topic/<?= $t['id_topic'] ?>.png');
+    <?php else: ?>
+    background-image: url('img/topic.png');
+    <?php endif; ?>
+  }
+  <?php endforeach; ?>
+
+  <?php foreach ($hotTopic as $k => $t): ?>
+  .carHot<?= $k ?> .cardImg, .carHot<?= $k ?> .cardImg--hover {
     <?php if (file_exists("img/topic/".$t['id_topic'].".png")): ?>
     background-image: url('img/topic/<?= $t['id_topic'] ?>.png');
     <?php else: ?>
