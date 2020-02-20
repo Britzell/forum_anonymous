@@ -14,8 +14,7 @@
   // &laquo; &raquo;
 
 ?>
-<nav>
-  <ul class="">
+  <ul class="pagination">
     <li class="">
       <a class="" href="<?= $url."1" ?>">
         <span aria-hidden="true">&laquo;</span>
@@ -50,4 +49,3 @@
       </a>
     </li>
   </ul>
-</nav>

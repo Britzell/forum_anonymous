@@ -29,6 +29,17 @@ body{
   border-radius: 20px;
   text-align: center;
 }
+.pagination{
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  margin: auto;
+  list-style-type: none;
+}
+
+.pagination a{
+  color: white;
+}
 
 @media screen and (max-width: 1200px) {
   .formulaireConnexion{
@@ -198,7 +209,7 @@ h2{
     width: 100%!important;
   }
   main{
-    padding-top: 500px!important;
+    padding-top: 400px!important;
   }
   .logo{
     width: 70%!important;
@@ -255,7 +266,7 @@ main{
 .wrapper{
   display: flex;
   justify-content: flex-end;
-  width: 90%;
+  width: 100%;
 }
 
 h3.glitch{
@@ -627,6 +638,7 @@ form.settings-center{
 .content-com a{
   color: #860013;
   font-size: 24px;
+  padding-right: 10px;
 }
 
 .edit a{
