@@ -20,15 +20,14 @@
   </header>
 
   <script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous">
-  </script>
-  <script>
-    function ouvreMenu(){
-      $("nav").addClass("menupresent")
-    }
-    function fermeMenu(){
-      $("nav").removeClass("menupresent")
-    }
-  </script>
+    crossorigin="anonymous"></script>
+    <script>
+      function ouvreMenu(){
+        $("nav").addClass("menupresent")
+      }
+      function fermeMenu(){
+        $("nav").removeClass("menupresent")
+      }
+    </script>
