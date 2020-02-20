@@ -4,6 +4,7 @@
   empty($_GET['id']) ? $idCategory = 0 : $idCategory = htmlspecialchars($_GET['id']);
   empty($_GET['p']) ? $p = 1 : $p = htmlspecialchars($_GET['p']);
   $topic = getTopic($pdo, $idCategory, $p*30-30);
+  $hotTopic = hotTopic($pdo, $idCategory, 3);
   $lastPage = countTopic($pdo, false)/30+1;
   $lastPage = (int)$lastPage;
   empty($_GET['sort']) ? $_GET['sort'] = "" : "";
@@ -23,7 +24,7 @@
   }
 
   $category = getCategory($pdo);
-  
+
   require 'inc/header.php';
     require 'inc/navigation.php';
 ?>
@@ -44,35 +45,41 @@
     </div>
 
     <div class="cards">
-      <?php foreach ($topic as $k => $t): ?>
-        <?php if ($k < 3): ?>
-          <article class="card car<?= $k ?>">
-            <div class="cardInfo-hover">
-              <div class="cardClock-info">
-                <svg class="cardClock"  viewBox="0 0 24 24"><path d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
-                </svg><span class="cardTime"><?php $date = new DateTime($t['createAt']); echo "Le ".$date->format("d/m/Y à H:i"); ?></span>
-              </div>
+      <?php foreach ($hotTopic as $k => $t): ?>
+        <article class="card car<?= $k ?>">
+          <div class="cardInfo-hover">
+            <div class="cardClock-info">
+              <svg class="cardClock"  viewBox="0 0 24 24"><path d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" />
+              </svg><span class="cardTime"><?php $date = new DateTime($t['createAt']); echo "Le ".$date->format("d/m/Y à H:i"); ?></span>
+            </div>
 
-            </div>
-            <div class="cardImg"></div>
-            <a href="topic?id=<?= $t['id_topic'] ?>" class="card_link">
-              <div class="cardImg--hover"></div>
-            </a>
-            <div class="cardInfo">
-              <span class="cardCategory"><?= $category[$t['id_category']-1]['name'] ?></span>
-              <h3 class="cardTitle"><?= $t['name'] ?></h3>
-              <span class="cardBy">by <a href="#" class="cardAuthor" title="author"><?= $t['login'] ?></a></span>
-            </div>
-          </article>
-        <?php endif; ?>
+          </div>
+          <div class="cardImg"></div>
+          <a href="topic?id=<?= $t['id_topic'] ?>" class="card_link">
+            <div class="cardImg--hover"></div>
+          </a>
+          <div class="cardInfo">
+            <span class="cardCategory"><?= $category[$t['id_category']-1]['name'] ?></span>
+            <h3 class="cardTitle"><?= $t['name'] ?></h3>
+            <span class="cardBy">by <a href="account?id=<?= $t['id_user'] ?>" class="cardAuthor" title="author"><?= $t['login'] ?></a></span>
+          </div>
+        </article>
       <?php endforeach; ?>
     </div>
   </section>
 
   <section class="sectionTopic">
     <div class="topicSort">
+<<<<<<< HEAD
       <div>
         <h1  class="topicH1"><?= $header ?></h1>
+=======
+      <div class="topicH1">
+        <h1><?= $header ?></h1>
+        <?php if ($idCategory != 0): ?>
+          <a href="list">Retour au forum</a>
+        <?php endif; ?>
+>>>>>>> 53b6343128e74b4078f2a00cbb86502deea3a098
       </div>
       <div class="sort">
         <form class="" action="" method="get" id="sortForm">
