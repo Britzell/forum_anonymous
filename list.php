@@ -70,13 +70,8 @@
 
   <section class="sectionTopic">
     <div class="topicSort">
-<<<<<<< HEAD
       <div>
-        <h1  class="topicH1"><?= $header ?></h1>
-=======
-      <div class="topicH1">
-        <h1><?= $header ?></h1>
->>>>>>> fd5c49d2702f4fcf9c34346c9f9a05e8145e8c86
+        <h1 class="topicH1"><?= $header ?></h1>
         <?php if ($idCategory != 0): ?>
           <a href="list">Retour au forum</a>
         <?php endif; ?>
