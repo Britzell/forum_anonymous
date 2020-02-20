@@ -26,13 +26,13 @@
     <?php foreach ($comment as $k => $c): ?>
       <?php if ($k == 0): ?>
         <?php if (file_exists("img/avatar/".$c['id_user'].".png")): ?>
-          
-          
+
+
           <div class="position">
           <img class="img-profil" src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo"><p class="person"><?= $c['login'] ?></p>
-          
-        
-      
+
+
+
         <?php else: ?>
           </div>
           <img class="img-profil position" src="img/default.png" alt="default user logo">
@@ -70,50 +70,45 @@
 <div class="separ"></div>
 
 <div class="content-com">
-<div id="cmt<?= $c['id_comment'] ?>">
-        <h4>Commentaire :</h4>
-      </div>
-  <div class="img-profil commentaire">
-    <?php foreach ($comment as $k => $c): ?>
-      <?php if ($c['enable'] == 1 && $k != 0): ?>
+  <div id="cmt<?= $c['id_comment'] ?>">
+    <h4>Commentaire :</h4>
+  </div>
+  <?php foreach ($comment as $k => $c): ?>
+    <?php if ($c['enable'] == 1 && $k != 0): ?>
+      <div class="img-profil commentaire">
         <?php if (file_exists("img/avatar/".$c['id_user'].".png")): ?>
           <div class="photo-com">
-          <img src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo">
-          <div class="id">
-        <p><?= $c['login'] ?></p>
-      </div>
-      <div class="date">
-        <p>Le <?php $date = new DateTime($c['createAt']); echo $date->format("d/m/y à H:i"); ?></p>
-      </div>
+            <img src="img/avatar/<?= $c['id_user'] ?>.png" alt="<?= $c['login'] ?> user logo">
+            <div class="id">
+              <p><?= $c['login'] ?></p>
+            </div>
+            <div class="date">
+              <p>Le <?php $date = new DateTime($c['createAt']); echo $date->format("d/m/y à H:i"); ?></p>
+              <?php if ($c['updateAt'] != null): ?>
+                <p>Edit le <?php $date = new DateTime($c['updateAt']); echo $date->format("d/m/y à H:i"); ?></p>
+              <?php endif; ?>
+            </div>
           </div>
         <?php else: ?>
           <img src="img/default.png" alt="default user logo">
         <?php endif; ?>
 
         <div class="content-commentaire">
-        <div class="content-comm">
-        <p><?= $c['content'] ?></p>
-        <a href="deleteComment?id=<?= $idTopic ?>&c=<?= $c['id_comment'] ?>">Supprimer</a>
-      </div>
-      </div>
-
-
+          <div class="content-comm">
+            <p><?= $c['content'] ?></p>
+            <?php if ($c['id_user'] == $_SESSION['user']['id_user']): ?>
+              <a href="editComment?id=<?= $idTopic ?>&c=<?= $c['id_comment'] ?>&k=<?= $k ?>">Edit</a>
+            <?php endif; ?>
+            <?php if ($_SESSION['user']['id_role'] > 1): ?>
+              <a href="deleteComment?id=<?= $idTopic ?>&c=<?= $c['id_comment'] ?>">Supprimer</a>
+            <?php endif; ?>
+          </div>
+        </div>
       </div>
 
       <div class="separ2"></div>
-
-      <div class="img-profil commentaire">
-        <?php if (!empty($c['edit'])): ?>
-          <h4>Edit :</h4>
-          <p><?= $c['edit'] ?></p>
-          <p>Le <?php $date = new DateTime($c['updateAt']); echo $date->format("d/m/y à H:i"); ?></p>
-        <?php endif; ?>
-        <?php if ($c['id_user'] == $_SESSION['user']['id_user']): ?>
-        <?php endif; ?>
-        <?php if ($_SESSION['user']['id_role'] > 1): ?>
-        <?php endif; ?>
-      <?php endif; ?>
-    <?php endforeach; ?>
-  </div>
+    <?php endif; ?>
+  <?php endforeach; ?>
+</div>
 
 <?php require 'inc/pagination.php'; ?>
