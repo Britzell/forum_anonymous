@@ -184,6 +184,40 @@ h2{
   .formpart1 img{
     width: 80%;
   }
+  .text-account{
+    padding-right: 10px;
+  }
+  .topicH1{
+    text-align: center;
+  }
+  .topicSort{
+    display: block!important;
+  }
+  .sort{
+    display: flex!important;
+    padding-right: 0!important;
+  }
+  form#sortForm{
+    margin: auto!important;
+  }
+  button{
+    width: 50%!important;
+  }
+  select{
+    width: 50%!important;
+  }
+  .cards{
+    flex-wrap: nowrap!important;
+    display: block!important;
+  }
+  .firstTopic .card{
+    width: 95%!important;
+    margin-left: 0!important;
+  }
+  body{
+    width: 90%;
+    margin: auto;
+  }
   #red{
     width: 80%;
     margin-bottom: 50px;
@@ -207,6 +241,7 @@ h2{
   h3.glitch{
     font-size: 60px!important;
     width: 100%!important;
+    padding-left: 0!important;
   }
   main{
     padding-top: 400px!important;
