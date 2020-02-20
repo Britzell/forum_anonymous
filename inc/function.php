@@ -26,6 +26,7 @@
  * getIp() Récupérer l'ip de l'utilisateur
  * addView($pdo, $idTopic) Ajouté un vue sur un topic, interval 20 minutes
  * hotTopic($pdo, $idCategory, $n) Topic les plus vue de la category (0 = All) et le nombre de résultat
+ * getNameCategory($pdo, $id)
  */
 
   function query($pdo, $sql, $param = [])
@@ -353,7 +354,7 @@
 
   function getLastUserTopic($pdo, $idUser, $n)
   {
-    $last = query($pdo, "SELECT DISTINCT comment.id_topic, comment.content, topic.name FROM comment, topic WHERE comment.id_user = ? AND comment.id_topic = topic.id_topic ORDER BY comment.id_comment DESC LIMIT $n", [$idUser])->fetchAll();
+    $last = query($pdo, "SELECT DISTINCT comment.id_topic, comment.content, topic.* FROM comment, topic WHERE comment.id_user = ? AND comment.id_topic = topic.id_topic ORDER BY comment.id_comment DESC LIMIT $n", [$idUser])->fetchAll();
     return $last;
   }
 
@@ -431,5 +432,11 @@
       }
     }
     return $tempo;
+  }
+
+  function getNameCategory($pdo, $id)
+  {
+    $name = query($pdo, "SELECT name FROM category WHERE id = ?", [$id])->fetch();
+    return $name['name'];
   }
 ?>

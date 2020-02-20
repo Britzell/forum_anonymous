@@ -53,7 +53,7 @@
           <div class="cardInfo">
             <span class="cardCategory"><?= $category[$t['id_category']-1]['name'] ?></span>
             <h3 class="cardTitle"><?= $t['name'] ?></h3>
-            <span class="cardBy">by <a href="#" class="cardAuthor" title="author"><?= $t['login'] ?></a></span>
+            <span class="cardBy">by <a href="account?id=<?= $t['id_user'] ?>" class="cardAuthor" title="author"><?= $t['login'] ?></a></span>
           </div>
         </article>
       <?php endforeach; ?>
